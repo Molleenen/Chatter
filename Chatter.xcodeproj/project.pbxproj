@@ -12,6 +12,8 @@
 		EA05BFB42216CE7B000C8D0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA05BFB22216CE7B000C8D0D /* Main.storyboard */; };
 		EA05BFB62216CE7D000C8D0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA05BFB52216CE7D000C8D0D /* Assets.xcassets */; };
 		EA05BFB92216CE7D000C8D0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA05BFB72216CE7D000C8D0D /* LaunchScreen.storyboard */; };
+		EA08D9D6221730E70062EA3D /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA08D9D5221730E70062EA3D /* AuthenticationService.swift */; };
+		EA08D9D82217558E0062EA3D /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA08D9D72217558E0062EA3D /* RoundedButton.swift */; };
 		EA2EA9AA2216D14100DD609B /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2EA9A82216D14100DD609B /* SWRevealViewController.m */; };
 		EA2EA9AF2216D33900DD609B /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EA9AE2216D33900DD609B /* ChatViewController.swift */; };
 		EA2EA9B12216D34700DD609B /* ChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EA9B02216D34700DD609B /* ChannelViewController.swift */; };
@@ -29,6 +31,8 @@
 		EA05BFB52216CE7D000C8D0D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EA05BFB82216CE7D000C8D0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EA05BFBA2216CE7D000C8D0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA08D9D5221730E70062EA3D /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
+		EA08D9D72217558E0062EA3D /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		EA2EA9A72216D14000DD609B /* Chatter-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Chatter-Bridging-Header.h"; sourceTree = "<group>"; };
 		EA2EA9A82216D14100DD609B /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		EA2EA9A92216D14100DD609B /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -92,6 +96,7 @@
 		EA05BFAD2216CE7B000C8D0D /* Chatter */ = {
 			isa = PBXGroup;
 			children = (
+				EA08D9D4221730CB0062EA3D /* Services */,
 				EA2EA9B42216E01200DD609B /* Utilities */,
 				EA2EA9AD2216D31B00DD609B /* Model */,
 				EA2EA9AC2216D31500DD609B /* View */,
@@ -104,6 +109,14 @@
 				EA05BFBA2216CE7D000C8D0D /* Info.plist */,
 			);
 			path = Chatter;
+			sourceTree = "<group>";
+		};
+		EA08D9D4221730CB0062EA3D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				EA08D9D5221730E70062EA3D /* AuthenticationService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		EA2EA9A62216D12300DD609B /* Supporting Files */ = {
@@ -131,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				EA2EA9B22216D65800DD609B /* GradientView.swift */,
+				EA08D9D72217558E0062EA3D /* RoundedButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -278,8 +292,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA2EA9B82216E43C00DD609B /* LoginViewController.swift in Sources */,
+				EA08D9D82217558E0062EA3D /* RoundedButton.swift in Sources */,
 				EA05BFAF2216CE7B000C8D0D /* AppDelegate.swift in Sources */,
 				EA2EA9AF2216D33900DD609B /* ChatViewController.swift in Sources */,
+				EA08D9D6221730E70062EA3D /* AuthenticationService.swift in Sources */,
 				EA2EA9B32216D65800DD609B /* GradientView.swift in Sources */,
 				EA2EA9BC2216EF2A00DD609B /* CreateAccountViewController.swift in Sources */,
 				EA2EA9B12216D34700DD609B /* ChannelViewController.swift in Sources */,
