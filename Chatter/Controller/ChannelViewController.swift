@@ -2,9 +2,6 @@
 //  ChannelViewController.swift
 //  Chatter
 //
-//  Created by Robert Abramczyk on 15/02/2019.
-//  Copyright © 2019 Sebastian Wojciechowski. All rights reserved.
-//
 
 import UIKit
 
@@ -20,5 +17,7 @@ class ChannelViewController: UIViewController {
     @IBAction func loginButtonPressed(_ sender: Any) {
         performSegue(withIdentifier: TO_LOGIN, sender: nil)
     }
+    
+    @IBAction func prepareForUnwind(segue: UIStoryboardSegue){}
     
 }

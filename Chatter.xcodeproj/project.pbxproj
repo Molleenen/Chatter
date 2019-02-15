@@ -18,6 +18,7 @@
 		EA2EA9B32216D65800DD609B /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EA9B22216D65800DD609B /* GradientView.swift */; };
 		EA2EA9B62216E02200DD609B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EA9B52216E02200DD609B /* Constants.swift */; };
 		EA2EA9B82216E43C00DD609B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EA9B72216E43C00DD609B /* LoginViewController.swift */; };
+		EA2EA9BC2216EF2A00DD609B /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EA9BB2216EF2A00DD609B /* CreateAccountViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		EA2EA9B22216D65800DD609B /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		EA2EA9B52216E02200DD609B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		EA2EA9B72216E43C00DD609B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		EA2EA9BB2216EF2A00DD609B /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		EEEA2A50D4E6628A592D269D /* Pods-Chatter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chatter.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chatter/Pods-Chatter.release.xcconfig"; sourceTree = "<group>"; };
 		F163FED5973F8C653553AD75 /* Pods-Chatter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chatter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chatter/Pods-Chatter.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -120,6 +122,7 @@
 				EA2EA9AE2216D33900DD609B /* ChatViewController.swift */,
 				EA2EA9B02216D34700DD609B /* ChannelViewController.swift */,
 				EA2EA9B72216E43C00DD609B /* LoginViewController.swift */,
+				EA2EA9BB2216EF2A00DD609B /* CreateAccountViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				EA05BFAF2216CE7B000C8D0D /* AppDelegate.swift in Sources */,
 				EA2EA9AF2216D33900DD609B /* ChatViewController.swift in Sources */,
 				EA2EA9B32216D65800DD609B /* GradientView.swift in Sources */,
+				EA2EA9BC2216EF2A00DD609B /* CreateAccountViewController.swift in Sources */,
 				EA2EA9B12216D34700DD609B /* ChannelViewController.swift in Sources */,
 				EA2EA9AA2216D14100DD609B /* SWRevealViewController.m in Sources */,
 				EA2EA9B62216E02200DD609B /* Constants.swift in Sources */,
