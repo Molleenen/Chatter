@@ -9,18 +9,19 @@
 /* Begin PBXBuildFile section */
 		1600EC3D8EFE5B39FB2FB7AD /* Pods_Chatter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0994EDED5508A9A60F60DAA1 /* Pods_Chatter.framework */; };
 		EA05BFAF2216CE7B000C8D0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA05BFAE2216CE7B000C8D0D /* AppDelegate.swift */; };
-		EA05BFB12216CE7B000C8D0D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA05BFB02216CE7B000C8D0D /* ViewController.swift */; };
 		EA05BFB42216CE7B000C8D0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA05BFB22216CE7B000C8D0D /* Main.storyboard */; };
 		EA05BFB62216CE7D000C8D0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA05BFB52216CE7D000C8D0D /* Assets.xcassets */; };
 		EA05BFB92216CE7D000C8D0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA05BFB72216CE7D000C8D0D /* LaunchScreen.storyboard */; };
 		EA2EA9AA2216D14100DD609B /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2EA9A82216D14100DD609B /* SWRevealViewController.m */; };
+		EA2EA9AF2216D33900DD609B /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EA9AE2216D33900DD609B /* ChatViewController.swift */; };
+		EA2EA9B12216D34700DD609B /* ChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EA9B02216D34700DD609B /* ChannelViewController.swift */; };
+		EA2EA9B32216D65800DD609B /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EA9B22216D65800DD609B /* GradientView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0994EDED5508A9A60F60DAA1 /* Pods_Chatter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chatter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA05BFAB2216CE7B000C8D0D /* Chatter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chatter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA05BFAE2216CE7B000C8D0D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EA05BFB02216CE7B000C8D0D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EA05BFB32216CE7B000C8D0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EA05BFB52216CE7D000C8D0D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EA05BFB82216CE7D000C8D0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -28,6 +29,9 @@
 		EA2EA9A72216D14000DD609B /* Chatter-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Chatter-Bridging-Header.h"; sourceTree = "<group>"; };
 		EA2EA9A82216D14100DD609B /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		EA2EA9A92216D14100DD609B /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		EA2EA9AE2216D33900DD609B /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		EA2EA9B02216D34700DD609B /* ChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelViewController.swift; sourceTree = "<group>"; };
+		EA2EA9B22216D65800DD609B /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		EEEA2A50D4E6628A592D269D /* Pods-Chatter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chatter.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chatter/Pods-Chatter.release.xcconfig"; sourceTree = "<group>"; };
 		F163FED5973F8C653553AD75 /* Pods-Chatter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chatter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chatter/Pods-Chatter.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -82,9 +86,11 @@
 		EA05BFAD2216CE7B000C8D0D /* Chatter */ = {
 			isa = PBXGroup;
 			children = (
+				EA2EA9AD2216D31B00DD609B /* Model */,
+				EA2EA9AC2216D31500DD609B /* View */,
+				EA2EA9AB2216D30F00DD609B /* Controller */,
 				EA2EA9A62216D12300DD609B /* Supporting Files */,
 				EA05BFAE2216CE7B000C8D0D /* AppDelegate.swift */,
-				EA05BFB02216CE7B000C8D0D /* ViewController.swift */,
 				EA05BFB22216CE7B000C8D0D /* Main.storyboard */,
 				EA05BFB52216CE7D000C8D0D /* Assets.xcassets */,
 				EA05BFB72216CE7D000C8D0D /* LaunchScreen.storyboard */,
@@ -101,6 +107,30 @@
 				EA2EA9A72216D14000DD609B /* Chatter-Bridging-Header.h */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EA2EA9AB2216D30F00DD609B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EA2EA9AE2216D33900DD609B /* ChatViewController.swift */,
+				EA2EA9B02216D34700DD609B /* ChannelViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		EA2EA9AC2216D31500DD609B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EA2EA9B22216D65800DD609B /* GradientView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EA2EA9AD2216D31B00DD609B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,8 +260,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA05BFB12216CE7B000C8D0D /* ViewController.swift in Sources */,
 				EA05BFAF2216CE7B000C8D0D /* AppDelegate.swift in Sources */,
+				EA2EA9AF2216D33900DD609B /* ChatViewController.swift in Sources */,
+				EA2EA9B32216D65800DD609B /* GradientView.swift in Sources */,
+				EA2EA9B12216D34700DD609B /* ChannelViewController.swift in Sources */,
 				EA2EA9AA2216D14100DD609B /* SWRevealViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
