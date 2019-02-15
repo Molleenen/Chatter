@@ -16,6 +16,8 @@
 		EA2EA9AF2216D33900DD609B /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EA9AE2216D33900DD609B /* ChatViewController.swift */; };
 		EA2EA9B12216D34700DD609B /* ChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EA9B02216D34700DD609B /* ChannelViewController.swift */; };
 		EA2EA9B32216D65800DD609B /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EA9B22216D65800DD609B /* GradientView.swift */; };
+		EA2EA9B62216E02200DD609B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EA9B52216E02200DD609B /* Constants.swift */; };
+		EA2EA9B82216E43C00DD609B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EA9B72216E43C00DD609B /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		EA2EA9AE2216D33900DD609B /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		EA2EA9B02216D34700DD609B /* ChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelViewController.swift; sourceTree = "<group>"; };
 		EA2EA9B22216D65800DD609B /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		EA2EA9B52216E02200DD609B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		EA2EA9B72216E43C00DD609B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EEEA2A50D4E6628A592D269D /* Pods-Chatter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chatter.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chatter/Pods-Chatter.release.xcconfig"; sourceTree = "<group>"; };
 		F163FED5973F8C653553AD75 /* Pods-Chatter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chatter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chatter/Pods-Chatter.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,6 +90,7 @@
 		EA05BFAD2216CE7B000C8D0D /* Chatter */ = {
 			isa = PBXGroup;
 			children = (
+				EA2EA9B42216E01200DD609B /* Utilities */,
 				EA2EA9AD2216D31B00DD609B /* Model */,
 				EA2EA9AC2216D31500DD609B /* View */,
 				EA2EA9AB2216D30F00DD609B /* Controller */,
@@ -114,6 +119,7 @@
 			children = (
 				EA2EA9AE2216D33900DD609B /* ChatViewController.swift */,
 				EA2EA9B02216D34700DD609B /* ChannelViewController.swift */,
+				EA2EA9B72216E43C00DD609B /* LoginViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -131,6 +137,14 @@
 			children = (
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		EA2EA9B42216E01200DD609B /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				EA2EA9B52216E02200DD609B /* Constants.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,11 +274,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA2EA9B82216E43C00DD609B /* LoginViewController.swift in Sources */,
 				EA05BFAF2216CE7B000C8D0D /* AppDelegate.swift in Sources */,
 				EA2EA9AF2216D33900DD609B /* ChatViewController.swift in Sources */,
 				EA2EA9B32216D65800DD609B /* GradientView.swift in Sources */,
 				EA2EA9B12216D34700DD609B /* ChannelViewController.swift in Sources */,
 				EA2EA9AA2216D14100DD609B /* SWRevealViewController.m in Sources */,
+				EA2EA9B62216E02200DD609B /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
