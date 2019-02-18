@@ -19,12 +19,19 @@ class CreateAccountViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        if UserDataService.instance.avatarName != "" {
+            userImage.image = UIImage(named: UserDataService.instance.avatarName)
+            avatarName = UserDataService.instance.avatarName
+        }
+    }
+    
     @IBAction func closeButtonPressed(_ sender: Any) {
         performSegue(withIdentifier: UNWIND_TO_CHANNEL, sender: nil)
     }
     
     @IBAction func chooseAvatarButtonPressed(_ sender: Any) {
-        
+        performSegue(withIdentifier: TO_AVATAR_PICKER, sender: nil)
     }
     @IBAction func generateBackgroundColorButtonPressed(_ sender: Any) {
         
