@@ -25,6 +25,8 @@
 		EABA634F221AD34900111D66 /* AvatarPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABA634E221AD34900111D66 /* AvatarPickerViewController.swift */; };
 		EABA6351221AD4AD00111D66 /* AvatarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABA6350221AD4AD00111D66 /* AvatarCell.swift */; };
 		EABA6353221AEBB000111D66 /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABA6352221AEBB000111D66 /* CircleImage.swift */; };
+		EABA6356221AFE8B00111D66 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABA6354221AFE8B00111D66 /* ProfileViewController.swift */; };
+		EABA6357221AFE8B00111D66 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EABA6355221AFE8B00111D66 /* ProfileViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +52,8 @@
 		EABA634E221AD34900111D66 /* AvatarPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarPickerViewController.swift; sourceTree = "<group>"; };
 		EABA6350221AD4AD00111D66 /* AvatarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCell.swift; sourceTree = "<group>"; };
 		EABA6352221AEBB000111D66 /* CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
+		EABA6354221AFE8B00111D66 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		EABA6355221AFE8B00111D66 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		EEEA2A50D4E6628A592D269D /* Pods-Chatter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chatter.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chatter/Pods-Chatter.release.xcconfig"; sourceTree = "<group>"; };
 		F163FED5973F8C653553AD75 /* Pods-Chatter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chatter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chatter/Pods-Chatter.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,6 +108,7 @@
 		EA05BFAD2216CE7B000C8D0D /* Chatter */ = {
 			isa = PBXGroup;
 			children = (
+				EABA6358221AFEAC00111D66 /* XIBs */,
 				EA08D9D4221730CB0062EA3D /* Services */,
 				EA2EA9B42216E01200DD609B /* Utilities */,
 				EA2EA9AD2216D31B00DD609B /* Model */,
@@ -146,6 +151,7 @@
 				EA2EA9B72216E43C00DD609B /* LoginViewController.swift */,
 				EA2EA9BB2216EF2A00DD609B /* CreateAccountViewController.swift */,
 				EABA634E221AD34900111D66 /* AvatarPickerViewController.swift */,
+				EABA6354221AFE8B00111D66 /* ProfileViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -174,6 +180,14 @@
 				EA2EA9B52216E02200DD609B /* Constants.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		EABA6358221AFEAC00111D66 /* XIBs */ = {
+			isa = PBXGroup;
+			children = (
+				EABA6355221AFE8B00111D66 /* ProfileViewController.xib */,
+			);
+			path = XIBs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,6 +253,7 @@
 			files = (
 				EA05BFB92216CE7D000C8D0D /* LaunchScreen.storyboard in Resources */,
 				EA05BFB62216CE7D000C8D0D /* Assets.xcassets in Resources */,
+				EABA6357221AFE8B00111D66 /* ProfileViewController.xib in Resources */,
 				EA05BFB42216CE7B000C8D0D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -315,6 +330,7 @@
 				EA2EA9BC2216EF2A00DD609B /* CreateAccountViewController.swift in Sources */,
 				EABA6351221AD4AD00111D66 /* AvatarCell.swift in Sources */,
 				EA2EA9B12216D34700DD609B /* ChannelViewController.swift in Sources */,
+				EABA6356221AFE8B00111D66 /* ProfileViewController.swift in Sources */,
 				EA2EA9AA2216D14100DD609B /* SWRevealViewController.m in Sources */,
 				EA2EA9B62216E02200DD609B /* Constants.swift in Sources */,
 			);
