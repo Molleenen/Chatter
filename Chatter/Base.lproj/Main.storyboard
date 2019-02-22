@@ -186,7 +186,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Oe1-lX-BcN">
                                 <rect key="frame" x="82" y="160" width="250" height="89"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O9n-Yr-0bx">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O9n-Yr-0bx">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="250" id="oQ9-Zq-Jz6"/>
@@ -248,6 +248,9 @@
                                         <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="loginButtonPressed:" destination="tWR-cH-u2A" eventType="touchUpInside" id="a9S-AE-PDg"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pbd-XN-8Nj">
                                 <rect key="frame" x="107.66666666666669" y="339" width="199" height="26"/>
@@ -259,9 +262,14 @@
                                     <action selector="createAccountButtonPressed:" destination="tWR-cH-u2A" eventType="touchUpInside" id="nG8-un-R6c"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="v0v-cR-sTD">
+                                <rect key="frame" x="188.66666666666666" y="249.66666666666663" width="37" height="37"/>
+                                <color key="color" red="0.25882352939999997" green="0.3294117647" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="v0v-cR-sTD" firstAttribute="centerY" secondItem="epv-2t-X7W" secondAttribute="centerY" constant="-100" id="22r-kl-GUJ"/>
                             <constraint firstItem="Z1A-44-74r" firstAttribute="top" secondItem="Ava-pL-Q7E" secondAttribute="top" constant="8" id="Ejb-b2-mqw"/>
                             <constraint firstItem="Oe1-lX-BcN" firstAttribute="centerX" secondItem="epv-2t-X7W" secondAttribute="centerX" id="HMJ-2v-YuK"/>
                             <constraint firstItem="Oe1-lX-BcN" firstAttribute="top" secondItem="6f4-fa-6B9" secondAttribute="bottom" constant="40" id="Jar-7g-g2o"/>
@@ -269,6 +277,7 @@
                             <constraint firstItem="Ava-pL-Q7E" firstAttribute="trailing" secondItem="Z1A-44-74r" secondAttribute="trailing" constant="16" id="Pv3-9p-JOn"/>
                             <constraint firstItem="6f4-fa-6B9" firstAttribute="centerX" secondItem="epv-2t-X7W" secondAttribute="centerX" id="Uos-qE-oj8"/>
                             <constraint firstItem="a2T-B0-idX" firstAttribute="centerX" secondItem="epv-2t-X7W" secondAttribute="centerX" id="Zut-do-qI9"/>
+                            <constraint firstItem="v0v-cR-sTD" firstAttribute="centerX" secondItem="epv-2t-X7W" secondAttribute="centerX" id="fTH-IF-Fki"/>
                             <constraint firstItem="Pbd-XN-8Nj" firstAttribute="centerX" secondItem="epv-2t-X7W" secondAttribute="centerX" id="scl-9v-BLC"/>
                             <constraint firstItem="6f4-fa-6B9" firstAttribute="top" secondItem="Ava-pL-Q7E" secondAttribute="top" constant="60" id="vIT-Wu-o19"/>
                             <constraint firstItem="Pbd-XN-8Nj" firstAttribute="top" secondItem="a2T-B0-idX" secondAttribute="bottom" id="yww-Tw-7sf"/>
@@ -276,6 +285,9 @@
                         <viewLayoutGuide key="safeArea" id="Ava-pL-Q7E"/>
                     </view>
                     <connections>
+                        <outlet property="emailTextField" destination="O9n-Yr-0bx" id="xb1-gs-ggb"/>
+                        <outlet property="passwordTextField" destination="e9x-mI-vTU" id="OLo-oZ-s08"/>
+                        <outlet property="spinner" destination="v0v-cR-sTD" id="kYV-Pf-fBd"/>
                         <segue destination="2Ja-1A-6I4" kind="show" identifier="toCreateAccount" id="MYc-3l-l8o"/>
                     </connections>
                 </viewController>
