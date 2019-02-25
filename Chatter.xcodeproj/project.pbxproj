@@ -23,12 +23,16 @@
 		EA2EA9BC2216EF2A00DD609B /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EA9BB2216EF2A00DD609B /* CreateAccountViewController.swift */; };
 		EA417A5322202380003485A7 /* MessageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA417A5222202380003485A7 /* MessageService.swift */; };
 		EA417A55222023AE003485A7 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA417A54222023AE003485A7 /* Channel.swift */; };
+		EA417A572220292F003485A7 /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA417A562220292F003485A7 /* ChannelCell.swift */; };
 		EABA634D221AC71C00111D66 /* UserDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABA634C221AC71C00111D66 /* UserDataService.swift */; };
 		EABA634F221AD34900111D66 /* AvatarPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABA634E221AD34900111D66 /* AvatarPickerViewController.swift */; };
 		EABA6351221AD4AD00111D66 /* AvatarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABA6350221AD4AD00111D66 /* AvatarCell.swift */; };
 		EABA6353221AEBB000111D66 /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABA6352221AEBB000111D66 /* CircleImage.swift */; };
 		EABA6356221AFE8B00111D66 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABA6354221AFE8B00111D66 /* ProfileViewController.swift */; };
 		EABA6357221AFE8B00111D66 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EABA6355221AFE8B00111D66 /* ProfileViewController.xib */; };
+		EAE4E5082220368A00EFDDB1 /* AddChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE4E5062220368A00EFDDB1 /* AddChannelViewController.swift */; };
+		EAE4E5092220368A00EFDDB1 /* AddChannelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAE4E5072220368A00EFDDB1 /* AddChannelViewController.xib */; };
+		EAE4E50B2223E9BA00EFDDB1 /* SocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE4E50A2223E9BA00EFDDB1 /* SocketService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,12 +56,16 @@
 		EA2EA9BB2216EF2A00DD609B /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		EA417A5222202380003485A7 /* MessageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageService.swift; sourceTree = "<group>"; };
 		EA417A54222023AE003485A7 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		EA417A562220292F003485A7 /* ChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
 		EABA634C221AC71C00111D66 /* UserDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataService.swift; sourceTree = "<group>"; };
 		EABA634E221AD34900111D66 /* AvatarPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarPickerViewController.swift; sourceTree = "<group>"; };
 		EABA6350221AD4AD00111D66 /* AvatarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCell.swift; sourceTree = "<group>"; };
 		EABA6352221AEBB000111D66 /* CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
 		EABA6354221AFE8B00111D66 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		EABA6355221AFE8B00111D66 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
+		EAE4E5062220368A00EFDDB1 /* AddChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChannelViewController.swift; sourceTree = "<group>"; };
+		EAE4E5072220368A00EFDDB1 /* AddChannelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddChannelViewController.xib; sourceTree = "<group>"; };
+		EAE4E50A2223E9BA00EFDDB1 /* SocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketService.swift; sourceTree = "<group>"; };
 		EEEA2A50D4E6628A592D269D /* Pods-Chatter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chatter.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chatter/Pods-Chatter.release.xcconfig"; sourceTree = "<group>"; };
 		F163FED5973F8C653553AD75 /* Pods-Chatter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chatter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chatter/Pods-Chatter.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -134,6 +142,7 @@
 				EA08D9D5221730E70062EA3D /* AuthenticationService.swift */,
 				EABA634C221AC71C00111D66 /* UserDataService.swift */,
 				EA417A5222202380003485A7 /* MessageService.swift */,
+				EAE4E50A2223E9BA00EFDDB1 /* SocketService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -157,6 +166,7 @@
 				EA2EA9BB2216EF2A00DD609B /* CreateAccountViewController.swift */,
 				EABA634E221AD34900111D66 /* AvatarPickerViewController.swift */,
 				EABA6354221AFE8B00111D66 /* ProfileViewController.swift */,
+				EAE4E5062220368A00EFDDB1 /* AddChannelViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -168,6 +178,7 @@
 				EA08D9D72217558E0062EA3D /* RoundedButton.swift */,
 				EABA6350221AD4AD00111D66 /* AvatarCell.swift */,
 				EABA6352221AEBB000111D66 /* CircleImage.swift */,
+				EA417A562220292F003485A7 /* ChannelCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -192,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				EABA6355221AFE8B00111D66 /* ProfileViewController.xib */,
+				EAE4E5072220368A00EFDDB1 /* AddChannelViewController.xib */,
 			);
 			path = XIBs;
 			sourceTree = "<group>";
@@ -258,6 +270,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA05BFB92216CE7D000C8D0D /* LaunchScreen.storyboard in Resources */,
+				EAE4E5092220368A00EFDDB1 /* AddChannelViewController.xib in Resources */,
 				EA05BFB62216CE7D000C8D0D /* Assets.xcassets in Resources */,
 				EABA6357221AFE8B00111D66 /* ProfileViewController.xib in Resources */,
 				EA05BFB42216CE7B000C8D0D /* Main.storyboard in Resources */,
@@ -324,7 +337,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAE4E50B2223E9BA00EFDDB1 /* SocketService.swift in Sources */,
 				EA2EA9B82216E43C00DD609B /* LoginViewController.swift in Sources */,
+				EA417A572220292F003485A7 /* ChannelCell.swift in Sources */,
 				EA08D9D82217558E0062EA3D /* RoundedButton.swift in Sources */,
 				EA05BFAF2216CE7B000C8D0D /* AppDelegate.swift in Sources */,
 				EABA6353221AEBB000111D66 /* CircleImage.swift in Sources */,
@@ -336,6 +351,7 @@
 				EABA634F221AD34900111D66 /* AvatarPickerViewController.swift in Sources */,
 				EA2EA9B32216D65800DD609B /* GradientView.swift in Sources */,
 				EA2EA9BC2216EF2A00DD609B /* CreateAccountViewController.swift in Sources */,
+				EAE4E5082220368A00EFDDB1 /* AddChannelViewController.swift in Sources */,
 				EABA6351221AD4AD00111D66 /* AvatarCell.swift in Sources */,
 				EA2EA9B12216D34700DD609B /* ChannelViewController.swift in Sources */,
 				EABA6356221AFE8B00111D66 /* ProfileViewController.swift in Sources */,

@@ -47,7 +47,7 @@ class LoginViewController: UIViewController {
     func setupView() {
         spinner.isHidden = true
         
-        emailTextField.attributedPlaceholder = NSAttributedString(string: "eamil", attributes: [NSAttributedString.Key.foregroundColor: purplePlaceholder])
+        emailTextField.attributedPlaceholder = NSAttributedString(string: "email", attributes: [NSAttributedString.Key.foregroundColor: purplePlaceholder])
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "password", attributes: [NSAttributedString.Key.foregroundColor: purplePlaceholder])
     }
 }
