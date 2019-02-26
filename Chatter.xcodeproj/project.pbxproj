@@ -33,6 +33,8 @@
 		EAE4E5082220368A00EFDDB1 /* AddChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE4E5062220368A00EFDDB1 /* AddChannelViewController.swift */; };
 		EAE4E5092220368A00EFDDB1 /* AddChannelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAE4E5072220368A00EFDDB1 /* AddChannelViewController.xib */; };
 		EAE4E50B2223E9BA00EFDDB1 /* SocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE4E50A2223E9BA00EFDDB1 /* SocketService.swift */; };
+		EAE4E50D2223FCE200EFDDB1 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE4E50C2223FCE200EFDDB1 /* Message.swift */; };
+		EAE4E5112225332E00EFDDB1 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE4E5102225332E00EFDDB1 /* MessageCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +68,8 @@
 		EAE4E5062220368A00EFDDB1 /* AddChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChannelViewController.swift; sourceTree = "<group>"; };
 		EAE4E5072220368A00EFDDB1 /* AddChannelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddChannelViewController.xib; sourceTree = "<group>"; };
 		EAE4E50A2223E9BA00EFDDB1 /* SocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketService.swift; sourceTree = "<group>"; };
+		EAE4E50C2223FCE200EFDDB1 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		EAE4E5102225332E00EFDDB1 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		EEEA2A50D4E6628A592D269D /* Pods-Chatter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chatter.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chatter/Pods-Chatter.release.xcconfig"; sourceTree = "<group>"; };
 		F163FED5973F8C653553AD75 /* Pods-Chatter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chatter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chatter/Pods-Chatter.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -179,6 +183,7 @@
 				EABA6350221AD4AD00111D66 /* AvatarCell.swift */,
 				EABA6352221AEBB000111D66 /* CircleImage.swift */,
 				EA417A562220292F003485A7 /* ChannelCell.swift */,
+				EAE4E5102225332E00EFDDB1 /* MessageCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -187,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				EA417A54222023AE003485A7 /* Channel.swift */,
+				EAE4E50C2223FCE200EFDDB1 /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -343,10 +349,12 @@
 				EA08D9D82217558E0062EA3D /* RoundedButton.swift in Sources */,
 				EA05BFAF2216CE7B000C8D0D /* AppDelegate.swift in Sources */,
 				EABA6353221AEBB000111D66 /* CircleImage.swift in Sources */,
+				EAE4E50D2223FCE200EFDDB1 /* Message.swift in Sources */,
 				EA417A55222023AE003485A7 /* Channel.swift in Sources */,
 				EABA634D221AC71C00111D66 /* UserDataService.swift in Sources */,
 				EA417A5322202380003485A7 /* MessageService.swift in Sources */,
 				EA2EA9AF2216D33900DD609B /* ChatViewController.swift in Sources */,
+				EAE4E5112225332E00EFDDB1 /* MessageCell.swift in Sources */,
 				EA08D9D6221730E70062EA3D /* AuthenticationService.swift in Sources */,
 				EABA634F221AD34900111D66 /* AvatarPickerViewController.swift in Sources */,
 				EA2EA9B32216D65800DD609B /* GradientView.swift in Sources */,
