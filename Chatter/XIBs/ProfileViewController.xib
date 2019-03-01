@@ -28,8 +28,8 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FOD-Ca-GAz">
-                    <rect key="frame" x="20" y="158.5" width="335" height="350"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FOD-Ca-GAz" customClass="RoundedView" customModule="Chatter" customModuleProvider="target">
+                    <rect key="frame" x="20" y="183.5" width="335" height="300"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ac7-Ju-Ing">
                             <rect key="frame" x="299" y="8" width="28" height="28"/>
@@ -39,7 +39,7 @@
                             </connections>
                         </button>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="aYl-qv-Jim">
-                            <rect key="frame" x="108.5" y="77.5" width="118" height="195"/>
+                            <rect key="frame" x="108.5" y="52.5" width="118" height="195"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqN-zw-RFH">
                                     <rect key="frame" x="4.5" y="0.0" width="109.5" height="24"/>
@@ -69,7 +69,7 @@
                             </subviews>
                         </stackView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A79-mF-kgd">
-                            <rect key="frame" x="138.5" y="309" width="58" height="33"/>
+                            <rect key="frame" x="138.5" y="259" width="58" height="33"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                             <state key="normal" title="Logout">
                                 <color key="titleColor" red="0.25882352939999997" green="0.3294117647" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -81,7 +81,7 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="350" id="1mj-km-wbc"/>
+                        <constraint firstAttribute="height" constant="300" id="1mj-km-wbc"/>
                         <constraint firstItem="aYl-qv-Jim" firstAttribute="centerY" secondItem="FOD-Ca-GAz" secondAttribute="centerY" id="EJs-Nh-wah"/>
                         <constraint firstAttribute="bottom" secondItem="A79-mF-kgd" secondAttribute="bottom" constant="8" id="HfO-SY-cKE"/>
                         <constraint firstItem="ac7-Ju-Ing" firstAttribute="top" secondItem="FOD-Ca-GAz" secondAttribute="top" constant="8" id="Q4L-IG-FkZ"/>

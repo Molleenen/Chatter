@@ -1,14 +1,14 @@
 //
-//  RoundedButton.swift
+//  RoundedView.swift
 //  Chatter
 //
 
 import UIKit
 
 @IBDesignable
-class RoundedButton: UIButton {
+class RoundedView: UIView {
 
-    @IBInspectable var cornerRadious: CGFloat = 10 {
+    @IBInspectable var cornerRadious: CGFloat = 15 {
         didSet {
             self.layer.cornerRadius = cornerRadious
         }
@@ -26,5 +26,4 @@ class RoundedButton: UIButton {
     func setupView() {
         self.layer.cornerRadius = cornerRadious
     }
-
 }

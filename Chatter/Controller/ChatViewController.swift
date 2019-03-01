@@ -101,18 +101,20 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @objc func keyboardWillChange(_ notification: Notification) {
-        let duration = notification.userInfo![UIResponder.keyboardAnimationDurationUserInfoKey] as! Double
-        let curve = notification.userInfo![UIResponder.keyboardAnimationCurveUserInfoKey] as! UInt
-        let curFrame = (notification.userInfo![UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
-        let targetFrame = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        let deltaY = targetFrame.origin.y - curFrame.origin.y
-        
-        UIView.animateKeyframes(withDuration: duration, delay: 0.0, options: UIView.KeyframeAnimationOptions(rawValue: curve), animations: {
-            self.view.frame.origin.y += deltaY
+        if messageTextField.isEditing {
+            let duration = notification.userInfo![UIResponder.keyboardAnimationDurationUserInfoKey] as! Double
+            let curve = notification.userInfo![UIResponder.keyboardAnimationCurveUserInfoKey] as! UInt
+            let curFrame = (notification.userInfo![UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+            let targetFrame = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+            let deltaY = targetFrame.origin.y - curFrame.origin.y
             
-        },completion: {(true) in
-            self.view.layoutIfNeeded()
-        })
+            UIView.animateKeyframes(withDuration: duration, delay: 0.0, options: UIView.KeyframeAnimationOptions(rawValue: curve), animations: {
+                self.view.frame.origin.y += deltaY
+                
+            },completion: {(true) in
+                self.view.layoutIfNeeded()
+            })
+        }
     }
     
     private func menuButtonSetup() {

@@ -27,8 +27,8 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YMG-YZ-6kQ">
-                    <rect key="frame" x="20" y="183.5" width="335" height="300"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YMG-YZ-6kQ" customClass="RoundedView" customModule="Chatter" customModuleProvider="target">
+                    <rect key="frame" x="20" y="83.5" width="335" height="300"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Hhp-aK-hpD">
                             <rect key="frame" x="42.5" y="105.5" width="250" height="89"/>
@@ -77,8 +77,8 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a channel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="umS-N8-Gqt">
-                            <rect key="frame" x="99" y="50" width="137.5" height="20.5"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                            <rect key="frame" x="87" y="50" width="161.5" height="24"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                             <color key="textColor" red="0.25882352939999997" green="0.3294117647" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -93,11 +93,6 @@
                             <state key="normal" title="Create Channel">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadious">
-                                    <real key="value" value="10"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="createChannelButtonPressed:" destination="-1" eventType="touchUpInside" id="Wpi-VD-JaJ"/>
                             </connections>
@@ -105,27 +100,27 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="eWF-x4-A1h" secondAttribute="trailing" constant="8" id="1HH-aR-0Lo"/>
-                        <constraint firstAttribute="height" constant="300" id="3kG-Uc-PQF"/>
-                        <constraint firstItem="Hhp-aK-hpD" firstAttribute="centerX" secondItem="YMG-YZ-6kQ" secondAttribute="centerX" id="W8D-kd-TP2"/>
-                        <constraint firstItem="umS-N8-Gqt" firstAttribute="top" secondItem="YMG-YZ-6kQ" secondAttribute="top" constant="50" id="Woa-GK-msV"/>
-                        <constraint firstItem="umS-N8-Gqt" firstAttribute="centerX" secondItem="YMG-YZ-6kQ" secondAttribute="centerX" id="ZWm-u3-zkn"/>
-                        <constraint firstItem="Hhp-aK-hpD" firstAttribute="centerY" secondItem="YMG-YZ-6kQ" secondAttribute="centerY" id="atg-TZ-MOv"/>
-                        <constraint firstAttribute="bottom" secondItem="eqT-2x-0bj" secondAttribute="bottom" constant="8" id="d4r-AA-eiT"/>
-                        <constraint firstItem="eWF-x4-A1h" firstAttribute="top" secondItem="YMG-YZ-6kQ" secondAttribute="top" constant="8" id="mIq-g2-K0W"/>
-                        <constraint firstItem="eqT-2x-0bj" firstAttribute="centerX" secondItem="YMG-YZ-6kQ" secondAttribute="centerX" id="tpn-Q9-ktH"/>
+                        <constraint firstAttribute="trailing" secondItem="eWF-x4-A1h" secondAttribute="trailing" constant="8" id="0Ir-ny-oaM"/>
+                        <constraint firstItem="eWF-x4-A1h" firstAttribute="top" secondItem="YMG-YZ-6kQ" secondAttribute="top" constant="8" id="1e7-6i-NzE"/>
+                        <constraint firstItem="umS-N8-Gqt" firstAttribute="top" secondItem="YMG-YZ-6kQ" secondAttribute="top" constant="50" id="Kcd-Ym-Qtz"/>
+                        <constraint firstAttribute="bottom" secondItem="eqT-2x-0bj" secondAttribute="bottom" constant="8" id="RLc-mI-HMW"/>
+                        <constraint firstItem="Hhp-aK-hpD" firstAttribute="centerY" secondItem="YMG-YZ-6kQ" secondAttribute="centerY" id="Sp6-DT-AIQ"/>
+                        <constraint firstItem="eqT-2x-0bj" firstAttribute="centerX" secondItem="YMG-YZ-6kQ" secondAttribute="centerX" id="Tc7-ZE-PGY"/>
+                        <constraint firstItem="umS-N8-Gqt" firstAttribute="centerX" secondItem="YMG-YZ-6kQ" secondAttribute="centerX" id="XPF-JV-Z55"/>
+                        <constraint firstAttribute="height" constant="300" id="hlh-0B-VA8"/>
+                        <constraint firstItem="Hhp-aK-hpD" firstAttribute="centerX" secondItem="YMG-YZ-6kQ" secondAttribute="centerX" id="uEl-BF-SWx"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="YMG-YZ-6kQ" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="6gX-RW-d7y"/>
                 <constraint firstItem="4pn-JN-nQH" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="ClS-cT-vcZ"/>
+                <constraint firstItem="YMG-YZ-6kQ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="IVE-MB-157"/>
                 <constraint firstItem="4pn-JN-nQH" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="LWB-lF-NW5"/>
-                <constraint firstItem="YMG-YZ-6kQ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="MYN-Yq-CKK"/>
+                <constraint firstItem="YMG-YZ-6kQ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="O2K-VI-uRa"/>
                 <constraint firstItem="4pn-JN-nQH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="SfB-Rw-2fC"/>
-                <constraint firstItem="YMG-YZ-6kQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="XOb-Wx-CCR"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="YMG-YZ-6kQ" secondAttribute="trailing" constant="20" id="YQy-p6-GtR"/>
+                <constraint firstItem="YMG-YZ-6kQ" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-100" id="UGN-q9-v0B"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="YMG-YZ-6kQ" secondAttribute="trailing" constant="20" id="ZaV-IJ-A08"/>
                 <constraint firstItem="4pn-JN-nQH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="j3r-wm-e4H"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

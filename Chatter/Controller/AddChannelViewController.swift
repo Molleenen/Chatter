@@ -13,6 +13,9 @@ class AddChannelViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        channelNameTextField.delegate = self
+        channelDescriptionTextField.delegate = self
+        channelNameTextField.becomeFirstResponder()
         setupView()
     }
     
@@ -44,4 +47,16 @@ class AddChannelViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+}
+
+extension AddChannelViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if channelNameTextField.isEditing {
+            channelDescriptionTextField.becomeFirstResponder()
+            return false
+        } else {
+            channelDescriptionTextField.resignFirstResponder()
+            return true
+        }
+    }
 }
