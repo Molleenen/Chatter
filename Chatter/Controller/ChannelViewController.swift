@@ -103,7 +103,7 @@ extension ChannelViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "channelCell", for: indexPath) as? ChannelCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Cell.channelCell.rawValue, for: indexPath) as? ChannelCell else {
             return UITableViewCell()
         }
         

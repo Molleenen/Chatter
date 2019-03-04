@@ -70,10 +70,10 @@ class LoginViewController: UIViewController {
 
         emailTextField.attributedPlaceholder = NSAttributedString(
             string: Placeholders.userEmail.rawValue,
-            attributes: [NSAttributedString.Key.foregroundColor: purplePlaceholder])
+            attributes: [NSAttributedString.Key.foregroundColor: PURPLE_PLACEHOLDER])
         passwordTextField.attributedPlaceholder = NSAttributedString(
             string: Placeholders.userPassword.rawValue,
-            attributes: [NSAttributedString.Key.foregroundColor: purplePlaceholder])
+            attributes: [NSAttributedString.Key.foregroundColor: PURPLE_PLACEHOLDER])
     }
 
     private func setupDelegate() {
@@ -89,11 +89,11 @@ class LoginViewController: UIViewController {
         if textField == emailTextField {
             textField.attributedPlaceholder = NSAttributedString(
                 string: Placeholders.userEmailRequired.rawValue,
-                attributes: [NSAttributedString.Key.foregroundColor: redPlaceholder])
+                attributes: [NSAttributedString.Key.foregroundColor: RED_PLACEHOLDER])
         } else if textField == passwordTextField {
             textField.attributedPlaceholder = NSAttributedString(
                 string: Placeholders.userPasswordRequired.rawValue,
-                attributes: [NSAttributedString.Key.foregroundColor: redPlaceholder])
+                attributes: [NSAttributedString.Key.foregroundColor: RED_PLACEHOLDER])
         }
     }
 

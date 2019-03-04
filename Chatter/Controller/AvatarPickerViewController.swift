@@ -49,7 +49,7 @@ extension AvatarPickerViewController: UICollectionViewDelegate, UICollectionView
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: "avatarCell",
+            withReuseIdentifier: Cell.avatarCell.rawValue,
             for: indexPath) as? AvatarCell
         else {
             return AvatarCell()

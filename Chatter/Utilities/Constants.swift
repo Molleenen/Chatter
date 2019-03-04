@@ -16,9 +16,13 @@ let URL_USER_BY_EMAIL = "\(BASE_URL)user/byEmail/"
 let URL_GET_CHANNELS = "\(BASE_URL)channel/"
 let URL_GET_MESSAGES = "\(BASE_URL)message/byChannel/"
 
+// Fonts
+let HELVETICA_REGULAR = "HelveticaNeue-Regular"
+let HELVETICA_BOLD = "HelveticaNeue-Bold"
+
 // Colors
-let purplePlaceholder = #colorLiteral(red: 0.2588235294, green: 0.3294117647, blue: 0.7254901961, alpha: 0.5)
-let redPlaceholder = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 0.5)
+let PURPLE_PLACEHOLDER = #colorLiteral(red: 0.2588235294, green: 0.3294117647, blue: 0.7254901961, alpha: 0.5)
+let RED_PLACEHOLDER = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 0.5)
 
 // Text fields Placeholders
 enum Placeholders: String {
@@ -39,13 +43,20 @@ let NOTIFICATION_USER_DATA_DID_CHANGE = Notification.Name("notificationUserDataC
 let NOTIFICATION_CHANNELS_LOADED = Notification.Name("channelsLoaded")
 let NOTIFICATION_CHANNEL_SELECTED = Notification.Name("channelSelected")
 
-// Segues
+// Segues names
 let TO_LOGIN = "toLogin"
 let TO_CREATE_ACCOUNT = "toCreateAccount"
 let UNWIND_TO_CHANNEL = "unwindToChannel"
 let TO_AVATAR_PICKER = "toAvatarPicker"
 
-// User Defaults
+// Cells identifiers
+enum Cell: String {
+    case messageCell = "messageCell"
+    case channelCell = "channelCell"
+    case avatarCell = "avatarCell"
+}
+
+// User Defaults Keys
 let TOKEN = "tokenKey"
 let LOGGED_IN = "loggedIn"
 let USER_EMAIL = "userEmail"
@@ -54,7 +65,6 @@ let USER_EMAIL = "userEmail"
 let HEADER = [
     "Content-Type": "application/json; charset=utf-8"
 ]
-
 let BEARER_HEADER = [
     "Authorization": "Bearer \(AuthenticationService.instance.authenticationToken)",
     "Content-Type": "application/json; charset=utf-8"

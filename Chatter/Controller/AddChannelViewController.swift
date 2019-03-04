@@ -48,10 +48,10 @@ class AddChannelViewController: UIViewController {
 
         channelNameTextField.attributedPlaceholder = NSAttributedString(
             string: Placeholders.channelName.rawValue,
-            attributes: [NSAttributedString.Key.foregroundColor: purplePlaceholder])
+            attributes: [NSAttributedString.Key.foregroundColor: PURPLE_PLACEHOLDER])
         channelDescriptionTextField.attributedPlaceholder = NSAttributedString(
             string: Placeholders.channelDescription.rawValue,
-            attributes: [NSAttributedString.Key.foregroundColor: purplePlaceholder])
+            attributes: [NSAttributedString.Key.foregroundColor: PURPLE_PLACEHOLDER])
     }
 
     private func setupDelegate() {
@@ -67,7 +67,7 @@ class AddChannelViewController: UIViewController {
         if textField == channelNameTextField {
             textField.attributedPlaceholder = NSAttributedString(
                 string: Placeholders.channelNameRequired.rawValue,
-                attributes: [NSAttributedString.Key.foregroundColor: redPlaceholder])
+                attributes: [NSAttributedString.Key.foregroundColor: RED_PLACEHOLDER])
         }
     }
 
