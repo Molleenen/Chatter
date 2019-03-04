@@ -8,6 +8,17 @@ import Alamofire
 import SwiftyJSON
 
 class AuthenticationService {
+
+    private enum Keys: String {
+        case id = "_id"
+        case user = "user"
+        case userName = "name"
+        case userEmail = "email"
+        case userPassword = "password"
+        case userAvatarName = "avatarName"
+        case userAvatarColor = "avatarColor"
+        case authenticationToken = "token"
+    }
     
     static let instance = AuthenticationService()
     
@@ -24,7 +35,10 @@ class AuthenticationService {
     
     var authenticationToken: String {
         get {
-            return defaults.value(forKey: TOKEN) as! String
+            guard let token = defaults.value(forKey: TOKEN) as? String else {
+                fatalError("Authentication token for token key not found in user defaults")
+            }
+            return token
         }
         set {
             defaults.set(newValue, forKey: TOKEN)
@@ -33,7 +47,10 @@ class AuthenticationService {
     
     var userEmail: String {
         get {
-            return defaults.value(forKey: USER_EMAIL) as! String
+            guard let userEmail = defaults.value(forKey: USER_EMAIL) as? String else {
+                fatalError("User email not found in user defaults")
+            }
+            return userEmail
         }
         set {
             defaults.set(newValue, forKey: USER_EMAIL)
@@ -45,18 +62,25 @@ class AuthenticationService {
         let lowerCaseEmail = email.lowercased()
         
         let body: [String: Any] = [
-            "email": lowerCaseEmail,
-            "password": password
+            Keys.userEmail.rawValue: lowerCaseEmail,
+            Keys.userPassword.rawValue: password
         ]
         
-        Alamofire.request(URL_REGISTER, method: .post, parameters: body, encoding: JSONEncoding.default, headers: HEADER).responseString { (response) in
-            if response.result.error == nil {
+        Alamofire
+            .request(
+                URL_REGISTER,
+                method: .post,
+                parameters: body,
+                encoding: JSONEncoding.default,
+                headers: HEADER)
+            .responseString { response in
+                guard response.result.error == nil else {
+                    debugPrint(response.result.error as Any)
+                    completion(false)
+                    return
+                }
                 completion(true)
-            } else {
-                completion(false)
-                debugPrint(response.result.error as Any)
             }
-        }
     }
     
     func loginUser(email: String, password: String, completion: @escaping CompletionHandler) {
@@ -64,82 +88,136 @@ class AuthenticationService {
         let lowerCaseEmail = email.lowercased()
         
         let body: [String: Any] = [
-            "email": lowerCaseEmail,
-            "password": password
+            Keys.userEmail.rawValue: lowerCaseEmail,
+            Keys.userPassword.rawValue: password
         ]
         
-        Alamofire.request(URL_LOGIN, method: .post, parameters: body, encoding: JSONEncoding.default, headers: HEADER).responseJSON { (response) in
-            if response.result.error == nil {
-                guard let data = response.data else { return }
+        Alamofire
+            .request(
+                URL_LOGIN,
+                method: .post,
+                parameters: body,
+                encoding: JSONEncoding.default,
+                headers: HEADER)
+            .responseJSON { [weak self] response in
+                guard response.result.error == nil else {
+                    debugPrint(response.result.error as Any)
+                    completion(false)
+                    return
+                }
+                guard let data = response.data else {
+                    completion(false)
+                    return
+                }
                 do {
                     let json = try JSON(data: data)
-                    self.userEmail = json["user"].stringValue
-                    self.authenticationToken = json["token"].stringValue
+                    guard
+                        let email = json[Keys.user.rawValue].string,
+                        let token = json[Keys.authenticationToken.rawValue].string
+                    else {
+                        completion(false)
+                        return
+                    }
+                    self?.userEmail = email
+                    self?.authenticationToken = token
                 } catch {
                     print("Error getting JSON from web response after logging user")
+                    completion(false)
+                    return
                 }
-                
-                self.isLoggedIn = true
+
+                self?.isLoggedIn = true
                 completion(true)
-            } else {
-                completion(false)
-                debugPrint(response.result.error as Any)
             }
-        }
     }
     
-    func createUser(name: String, email: String, avatarName: String, avatarColor: String, completion: @escaping CompletionHandler) {
+    func createUser(
+        name: String,
+        email: String,
+        avatarName: String,
+        avatarColor: String,
+        completion: @escaping CompletionHandler) {
+
         
         let lowerCaseEmail = email.lowercased()
         
         let body: [String: Any] = [
-            "name": name,
-            "email": lowerCaseEmail,
-            "avatarName": avatarName,
-            "avatarColor": avatarColor
+            Keys.userName.rawValue: name,
+            Keys.userEmail.rawValue: lowerCaseEmail,
+            Keys.userAvatarName.rawValue: avatarName,
+            Keys.userAvatarColor.rawValue: avatarColor
         ]
         
-        Alamofire.request(URL_USER_ADD, method: .post, parameters: body, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
+        Alamofire
+            .request(
+                URL_USER_ADD,
+                method: .post,
+                parameters: body,
+                encoding: JSONEncoding.default,
+                headers: BEARER_HEADER)
+            .responseJSON { [weak self] response in
             
-            if response.result.error == nil {
-                guard let data = response.data else { return }
-                self.setUserInfo(data: data)
+                guard response.result.error == nil else {
+                    debugPrint(response.result.error as Any)
+                    completion(false)
+                    return
+                }
+                guard let data = response.data else {
+                    completion(false)
+                    return
+                }
+                self?.setUserInfo(data: data)
                 completion(true)
-            } else {
-                completion(false)
-                debugPrint(response.result.error as Any)
-            }
         }
-        
     }
     
     func findUserByEmail(completion: @escaping CompletionHandler) {
         
-        Alamofire.request("\(URL_USER_BY_EMAIL)\(userEmail)", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
+        Alamofire
+            .request(
+                "\(URL_USER_BY_EMAIL)\(userEmail)",
+                method: .get, parameters: nil,
+                encoding: JSONEncoding.default,
+                headers: BEARER_HEADER)
+            .responseJSON { [weak self] response in
             
-            if response.result.error == nil {
-                guard let data = response.data else { return }
-                self.setUserInfo(data: data)
+                guard response.result.error == nil else {
+                    debugPrint(response.result.error as Any)
+                    completion(false)
+                    return
+                }
+                guard let data = response.data else {
+                    completion(false)
+                    return
+                }
+                self?.setUserInfo(data: data)
                 completion(true)
-            } else {
-                completion(false)
-                debugPrint(response.result.error as Any)
-            }
-            
         }
-        
     }
     
     func setUserInfo(data: Data) {
         do {
             let json = try JSON(data: data)
-            let id = json["_id"].stringValue
-            let avatarColor = json["avatarColor"].stringValue
-            let avatarName = json["avatarName"].stringValue
-            let email = json["email"].stringValue
-            let name = json["name"].stringValue
+            guard
+                let id = json[Keys.id.rawValue].string,
+                let avatarColor = json[Keys.userAvatarColor.rawValue].string,
+                let avatarName = json[Keys.userAvatarName.rawValue].string,
+                let email = json[Keys.userEmail.rawValue].string,
+                let name = json[Keys.userName.rawValue].string
+            else {
+                 return
+            }
             
-            UserDataService.instance.setUserData(id: id, avatarColor: avatarColor, avatarName: avatarName, email: email, name: name)
+            UserDataService
+                .instance
+                .setUserData(
+                    id: id,
+                    avatarColor:
+                    avatarColor,
+                    avatarName:
+                    avatarName,
+                    email: email,
+                    name: name)
         } catch {
             print("Error getting JSON from web response after logging user")
         }

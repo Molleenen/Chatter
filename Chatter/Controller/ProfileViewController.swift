@@ -15,28 +15,31 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        setupBehaviour()
     }
     
-    func setupView() {
-        userName.text = UserDataService.instance.name
-        userEmail.text = UserDataService.instance.email
-        profileImage.image = UIImage(named: UserDataService.instance.avatarName)
-        profileImage.backgroundColor = UserDataService.instance.returnUIColor(components: UserDataService.instance.avatarColor)
-        
-        let closeTouch = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.closeTap(_:)))
-        backgroundView.addGestureRecognizer(closeTouch)
-    }
-    
-    @objc func closeTap(_ recognizer: UITapGestureRecognizer) {
+    @objc func handleTap() {
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func closeButtonPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    @IBAction func logoutPressed(_ sender: Any) {
+    
+    @IBAction func logoutButtonPressed(_ sender: Any) {
         UserDataService.instance.logoutUser()
         NotificationCenter.default.post(name: NOTIFICATION_USER_DATA_DID_CHANGE, object: nil)
         dismiss(animated: true, completion: nil)
+    }
+
+    private func setupView() {
+        userName.text = UserDataService.instance.name
+        userEmail.text = UserDataService.instance.email
+        profileImage.image = UIImage(named: UserDataService.instance.avatarName)
+        profileImage.backgroundColor = UserDataService.instance.returnUIColor(components: UserDataService.instance.avatarColor)
+    }
+
+    private func setupBehaviour() {
+        backgroundView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.handleTap)))
     }
 }

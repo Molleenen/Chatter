@@ -6,7 +6,7 @@
 import Foundation
 
 struct Channel {
-    public private(set) var id: String!
-    public private(set) var name: String!
-    public private(set) var description: String!
+    private(set) var id: String
+    private(set) var name: String
+    private(set) var description: String
 }

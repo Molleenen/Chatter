@@ -31,7 +31,6 @@
 		EABA6356221AFE8B00111D66 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABA6354221AFE8B00111D66 /* ProfileViewController.swift */; };
 		EABA6357221AFE8B00111D66 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EABA6355221AFE8B00111D66 /* ProfileViewController.xib */; };
 		EAC9F9CA2226DB2E008EDE41 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC9F9C92226DB2E008EDE41 /* RoundedView.swift */; };
-		EAC9F9CE22286446008EDE41 /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC9F9CC22286446008EDE41 /* VerificationViewController.swift */; };
 		EAE4E5082220368A00EFDDB1 /* AddChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE4E5062220368A00EFDDB1 /* AddChannelViewController.swift */; };
 		EAE4E5092220368A00EFDDB1 /* AddChannelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAE4E5072220368A00EFDDB1 /* AddChannelViewController.xib */; };
 		EAE4E50B2223E9BA00EFDDB1 /* SocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE4E50A2223E9BA00EFDDB1 /* SocketService.swift */; };
@@ -68,7 +67,6 @@
 		EABA6354221AFE8B00111D66 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		EABA6355221AFE8B00111D66 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		EAC9F9C92226DB2E008EDE41 /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
-		EAC9F9CC22286446008EDE41 /* VerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
 		EAE4E5062220368A00EFDDB1 /* AddChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChannelViewController.swift; sourceTree = "<group>"; };
 		EAE4E5072220368A00EFDDB1 /* AddChannelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddChannelViewController.xib; sourceTree = "<group>"; };
 		EAE4E50A2223E9BA00EFDDB1 /* SocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketService.swift; sourceTree = "<group>"; };
@@ -175,7 +173,6 @@
 				EABA634E221AD34900111D66 /* AvatarPickerViewController.swift */,
 				EABA6354221AFE8B00111D66 /* ProfileViewController.swift */,
 				EAE4E5062220368A00EFDDB1 /* AddChannelViewController.swift */,
-				EAC9F9CC22286446008EDE41 /* VerificationViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -367,7 +364,6 @@
 				EA2EA9B32216D65800DD609B /* GradientView.swift in Sources */,
 				EA2EA9BC2216EF2A00DD609B /* CreateAccountViewController.swift in Sources */,
 				EAE4E5082220368A00EFDDB1 /* AddChannelViewController.swift in Sources */,
-				EAC9F9CE22286446008EDE41 /* VerificationViewController.swift in Sources */,
 				EABA6351221AD4AD00111D66 /* AvatarCell.swift in Sources */,
 				EA2EA9B12216D34700DD609B /* ChannelViewController.swift in Sources */,
 				EABA6356221AFE8B00111D66 /* ProfileViewController.swift in Sources */,

@@ -9,6 +9,21 @@ import SwiftyJSON
 
 class MessageService {
     
+    private enum Keys: String {
+        case id = "_id"
+
+        case channelId = "channelId"
+        case channelName = "name"
+        case channelDescription = "description"
+
+        case messageBody = "messageBody"
+        case messageTimeStamp = "timeStamp"
+
+        case userName = "userName"
+        case userAvatar = "userAvatar"
+        case userAvatarColor = "userAvatarColor"
+    }
+    
     static let instance = MessageService()
     
     var channels = [Channel]()
@@ -17,60 +32,113 @@ class MessageService {
     var channelSelected: Channel?
     
     func findAllChannels(completion: @escaping CompletionHandler) {
-        Alamofire.request(URL_GET_CHANNELS, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
-            if response.result.error == nil {
-                guard let data = response.data else { return }
+
+        Alamofire
+            .request(
+                URL_GET_CHANNELS,
+                method: .get,
+                parameters: nil,
+                encoding: JSONEncoding.default,
+                headers: BEARER_HEADER)
+            .responseJSON { [weak self] response in
+
+                guard response.result.error == nil else {
+                    debugPrint(response.result.error as Any)
+                    completion(false)
+                    return
+                }
+                guard let data = response.data else {
+                    completion(false)
+                    return
+                }
                 do {
-                    if let json = try JSON(data: data).array {
-                        for item in json {
-                            let id = item["_id"].stringValue
-                            let name = item["name"].stringValue
-                            let description = item["description"].stringValue
-                            let channel = Channel(id: id, name: name, description: description)
-                            self.channels.append(channel)
-                        }
+                    guard let json = try JSON(data: data).array else {
+                        completion(false)
+                        return
                     }
+
+                    json.forEach { item in
+                        guard
+                            let id = item[Keys.id.rawValue].string,
+                            let name = item[Keys.channelName.rawValue].string,
+                            let description = item[Keys.channelDescription.rawValue].string
+                        else {
+                            completion(false)
+                            return
+                        }
+
+                        let channel = Channel(id: id, name: name, description: description)
+                        self?.channels.append(channel)
+                    }
+
                     NotificationCenter.default.post(name: NOTIFICATION_CHANNELS_LOADED, object: nil)
                     completion(true)
                 } catch {
-                    
+                    print("Error getting JSON from data")
+                    completion(false)
                 }
-            } else {
-                completion(false)
-                debugPrint(response.result.error as Any)
-            }
         }
     }
     
     func findAllMessagesForChannel(channelId: String, completion: @escaping CompletionHandler) {
-        Alamofire.request("\(URL_GET_MESSAGES)\(channelId)", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
-            if response.result.error == nil {
-                self.clearMessages()
-                guard let data = response.data else { return }
-                do {
-                    if let json = try JSON(data: data).array {
-                        for item in json {
-                            let id = item["_id"].stringValue
-                            let messageBody = item["messageBody"].stringValue
-                            let timeStamp = item["timeStamp"].stringValue
-                            let channelId = item["channelId"].stringValue
-                            let userName = item["userName"].stringValue
-                            let userAvatar = item["userAvatar"].stringValue
-                            let userAvatarColor = item["userAvatarColor"].stringValue
-                            
-                            let message = Message(id: id, messageBody: messageBody, timeStamp: timeStamp, channelId: channelId, userName: userName, userAvatar: userAvatar, userAvatarColor: userAvatarColor)
-                            
-                            self.messages.append(message)
-                        }
-                        completion(true)
-                    }
-                } catch {
-                    
+        
+        Alamofire
+            .request(
+                "\(URL_GET_MESSAGES)\(channelId)",
+                method: .get,
+                parameters: nil,
+                encoding: JSONEncoding.default,
+                headers: BEARER_HEADER)
+            .responseJSON { response in
+
+                guard response.result.error == nil else {
+                    debugPrint(response.result.error as Any)
+                    completion(false)
+                    return
                 }
-            } else {
-                debugPrint(response.result.error as Any)
-                completion(false)
-            }
+
+                self.clearMessages()
+                guard let data = response.data else {
+                    completion(false)
+                    return
+                }
+                do {
+                    guard let json = try JSON(data: data).array else {
+                        completion(false)
+                        return
+                    }
+
+                    json.forEach { item in
+                        guard
+                            let id = item[Keys.id.rawValue].string,
+                            let messageBody = item[Keys.messageBody.rawValue].string,
+                            let timeStamp = item[Keys.messageTimeStamp.rawValue].string,
+                            let channelId = item[Keys.channelId.rawValue].string,
+                            let userName = item[Keys.userName.rawValue].string,
+                            let userAvatar = item[Keys.userAvatar.rawValue].string,
+                            let userAvatarColor = item[Keys.userAvatarColor.rawValue].string
+                        else {
+                            completion(false)
+                            return
+                        }
+
+                        let message = Message(
+                            id: id,
+                            messageBody: messageBody,
+                            timeStamp: timeStamp,
+                            channelId: channelId,
+                            userName: userName,
+                            userAvatar: userAvatar,
+                            userAvatarColor: userAvatarColor)
+
+                        self.messages.append(message)
+                    }
+
+                    completion(true)
+                } catch {
+                    print("Error getting JSON from data")
+                    completion(false)
+                }
         }
     }
     

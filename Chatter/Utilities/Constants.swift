@@ -5,7 +5,7 @@
 
 import Foundation
 
-typealias CompletionHandler = (_ Success: Bool) -> ()
+typealias CompletionHandler = (Bool) -> (Void)
 
 // URL Constants
 let BASE_URL = "https://fierce-oasis-16295.herokuapp.com/v1/"

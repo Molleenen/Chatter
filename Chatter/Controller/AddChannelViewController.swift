@@ -13,40 +13,52 @@ class AddChannelViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        channelNameTextField.delegate = self
-        channelDescriptionTextField.delegate = self
-        channelNameTextField.becomeFirstResponder()
         setupView()
+        setupDelegate()
+        setupBehaviour()
     }
     
     @IBAction func closeButtonPressed(_ sender: Any) {
+        view.endEditing(true)
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func createChannelButtonPressed(_ sender: Any) {
-        guard let channelName = channelNameTextField.text, channelNameTextField.text != "" else { return }
-        guard let channelDescription = channelDescriptionTextField.text else { return }
+        // TODO - channel name is required
+        guard
+            let channelName = channelNameTextField.text, !channelName.isEmpty,
+            let channelDescription = channelDescriptionTextField.text
+        else {
+            return
+        }
         
-        SocketService.instance.addChannel(channelName: channelName, channelDescription: channelDescription) { (success) in
-            if success {
-                self.dismiss(animated: true, completion: nil)
-            }
+        SocketService.instance.addChannel(channelName: channelName, channelDescription: channelDescription) { success in
+            guard success else { return }
+            view.endEditing(true)
+            dismiss(animated: true, completion: nil)
         }
     }
-    
-    func setupView() {
-        let closeTouch = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.closeTap(_:)))
-        backgroundView.addGestureRecognizer(closeTouch)
-        
+
+    private func setupView() {
+        channelNameTextField.becomeFirstResponder()
+
         channelNameTextField.attributedPlaceholder = NSAttributedString(string: "name", attributes: [NSAttributedString.Key.foregroundColor: purplePlaceholder])
         channelDescriptionTextField.attributedPlaceholder = NSAttributedString(string: "description", attributes: [NSAttributedString.Key.foregroundColor: purplePlaceholder])
-        
     }
-    
-    @objc func closeTap(_ recognizer: UITapGestureRecognizer) {
+
+    @objc func handleTap() {
+        view.endEditing(true)
         dismiss(animated: true, completion: nil)
     }
-    
+
+    private func setupDelegate() {
+        channelNameTextField.delegate = self
+        channelDescriptionTextField.delegate = self
+    }
+
+    private func setupBehaviour() {
+        backgroundView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(AddChannelViewController.handleTap)))
+    }
 }
 
 extension AddChannelViewController: UITextFieldDelegate {

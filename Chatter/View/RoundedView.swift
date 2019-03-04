@@ -10,20 +10,20 @@ class RoundedView: UIView {
 
     @IBInspectable var cornerRadious: CGFloat = 15 {
         didSet {
-            self.layer.cornerRadius = cornerRadious
+            layer.cornerRadius = cornerRadious
         }
     }
     
     override func awakeFromNib() {
-        self.setupView()
+        setupView()
     }
     
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
-        self.setupView()
+        setupView()
     }
     
-    func setupView() {
-        self.layer.cornerRadius = cornerRadious
+    private func setupView() {
+        layer.cornerRadius = cornerRadious
     }
 }

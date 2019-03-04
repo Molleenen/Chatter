@@ -75,7 +75,7 @@
                                 <color key="titleColor" red="0.25882352939999997" green="0.3294117647" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
-                                <action selector="logoutPressed:" destination="-1" eventType="touchUpInside" id="Bqy-0j-Xal"/>
+                                <action selector="logoutButtonPressed:" destination="-1" eventType="touchUpInside" id="FBU-sV-pkx"/>
                             </connections>
                         </button>
                     </subviews>

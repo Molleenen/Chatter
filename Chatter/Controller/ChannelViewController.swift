@@ -5,41 +5,27 @@
 
 import UIKit
 
-class ChannelViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ChannelViewController: UIViewController {
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var channelTableView: UITableView!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var userImage: CircleImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
-        setupUserInfo()
         self.revealViewController()?.rearViewRevealWidth = self.view.frame.size.width * 0.75
-        NotificationCenter.default.addObserver(self, selector: #selector(ChannelViewController.userDataDidChange(_:)), name: NOTIFICATION_USER_DATA_DID_CHANGE, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ChannelViewController.channelsLoaded(_:)), name: NOTIFICATION_CHANNELS_LOADED, object: nil)
-        
-        SocketService.instance.getChannel { (success) in
-            if success {
-                self.tableView.reloadData()
-            }
-        }
-        
-        SocketService.instance.getChatMessage { (newMessage) in
-            if newMessage.channelId != MessageService.instance.channelSelected?.id && AuthenticationService.instance.isLoggedIn  {
-                MessageService.instance.unreadChannels.append(newMessage.channelId)
-                self.tableView.reloadData()
-            }
-        }
+        setupUserInfo()
+        setupTableView()
+        setupSockets()
+        setupNotifications()
     }
     
     @IBAction func addChannelButtonPressed(_ sender: Any) {
-        if AuthenticationService.instance.isLoggedIn {
-            let addChannel = AddChannelViewController()
-            addChannel.modalPresentationStyle = .custom
-            present(addChannel, animated: true, completion: nil)
-        }
+        guard AuthenticationService.instance.isLoggedIn else { return }
+        
+        let addChannel = AddChannelViewController()
+        addChannel.modalPresentationStyle = .custom
+        present(addChannel, animated: true, completion: nil)
     }
     
     @IBAction func loginButtonPressed(_ sender: Any) {
@@ -54,11 +40,11 @@ class ChannelViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBAction func prepareForUnwind(segue: UIStoryboardSegue){}
     
-    @objc func userDataDidChange(_ notification: Notification) {
+    @objc func userDataDidChange() {
         setupUserInfo()
     }
-    @objc func channelsLoaded(_ notification: Notification) {
-        tableView.reloadData()
+    @objc func channelsLoaded() {
+        channelTableView.reloadData()
     }
     
     private func setupUserInfo() {
@@ -71,30 +57,66 @@ class ChannelViewController: UIViewController, UITableViewDelegate, UITableViewD
             loginButton.setTitle("Login", for: .normal)
             userImage.image = UIImage(named: "menuProfileIcon")
             userImage.backgroundColor = UIColor.clear
-            tableView.reloadData()
+            channelTableView.reloadData()
         }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "channelCell", for: indexPath) as? ChannelCell {
-            let channel = MessageService.instance.channels[indexPath.row]
-            cell.configureCell(channel: channel)
-            return cell
-        } else {
-            return UITableViewCell()
+    private func setupTableView() {
+        channelTableView.delegate = self
+        channelTableView.dataSource = self
+    }
+    
+    private func setupSockets() {
+        SocketService.instance.getChannel { success in
+            guard success else { return }
+            
+            self.channelTableView.reloadData()
+        }
+        
+        SocketService.instance.getChatMessage { newMessage in
+            guard
+                newMessage.channelId != MessageService.instance.channelSelected?.id,
+                AuthenticationService.instance.isLoggedIn
+            else {
+                return
+            }
+            
+            MessageService.instance.unreadChannels.append(newMessage.channelId)
+            self.channelTableView.reloadData()
         }
     }
+    
+    private func setupNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(ChannelViewController.userDataDidChange), name: NOTIFICATION_USER_DATA_DID_CHANGE, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChannelViewController.channelsLoaded), name: NOTIFICATION_CHANNELS_LOADED, object: nil)
+    }
+}
+
+extension ChannelViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return MessageService.instance.channels.count
     }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "channelCell", for: indexPath) as? ChannelCell else {
+            return UITableViewCell()
+        }
+        
+        let channel = MessageService.instance.channels[indexPath.row]
+        cell.configureCell(channel: channel)
+        return cell
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let channel = MessageService.instance.channels[indexPath.row]
         MessageService.instance.channelSelected = channel
         
-        if MessageService.instance.unreadChannels.count > 0 {
+        if !MessageService.instance.unreadChannels.isEmpty {
             MessageService.instance.unreadChannels = MessageService.instance.unreadChannels.filter{ $0 != channel.id }
         }
         
@@ -104,7 +126,6 @@ class ChannelViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         NotificationCenter.default.post(name: NOTIFICATION_CHANNEL_SELECTED, object: nil)
         
-        self.revealViewController()?.revealToggle(animated: true)
-        
+        revealViewController()?.revealToggle(animated: true)
     }
 }
