@@ -29,41 +29,13 @@ class CreateAccountViewController: UIViewController {
         if !UserDataService.instance.avatarName.isEmpty {
             userImage.image = UIImage(named: UserDataService.instance.avatarName)
             avatarName = UserDataService.instance.avatarName
-            
-            // TODO - Avatar struct
+
             if avatarName.contains("light") && avatarBackgroundColor == nil {
                 userImage.backgroundColor = UIColor.lightGray
             } else if avatarName.contains("dark") && avatarBackgroundColor == nil {
                 userImage.backgroundColor = UIColor.white
             }
         }
-    }
-    
-    private func setupView() {
-        spinner.isHidden = true
-        
-        usernameTextField.becomeFirstResponder()
-        
-        // TODO - Constants
-        usernameTextField.attributedPlaceholder = NSAttributedString(string: "username", attributes: [NSAttributedString.Key.foregroundColor: purplePlaceholder])
-        emailTextField.attributedPlaceholder = NSAttributedString(string: "email", attributes: [NSAttributedString.Key.foregroundColor: purplePlaceholder])
-        passwordTextField.attributedPlaceholder = NSAttributedString(string: "password", attributes: [NSAttributedString.Key.foregroundColor: purplePlaceholder])
-    }
-    
-    private func setupDelegate() {
-        usernameTextField.delegate = self
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
-    }
-    
-    private func setupBehaviour() {
-        view.addGestureRecognizer(UITapGestureRecognizer(
-            target: self,
-            action: #selector(CreateAccountViewController.handleTap)))
-    }
-    
-    @objc func handleTap() {
-        view.endEditing(true)
     }
     
     @IBAction func closeButtonPressed(_ sender: Any) {
@@ -90,13 +62,20 @@ class CreateAccountViewController: UIViewController {
     }
     
     @IBAction func createAccountButtonPressed(_ sender: Any) {
-        
-        // TODO - dividie guards and check empty textfields and change background
-        guard
-            let name = usernameTextField.text, !name.isEmpty,
-            let email = emailTextField.text, emailTextField.text != "",
-            let password = passwordTextField.text, passwordTextField.text != ""
-        else {
+
+        guard let name = usernameTextField.text, !name.isEmpty else {
+            setPlaceholderColor(for: usernameTextField)
+            usernameTextField.becomeFirstResponder()
+            return
+        }
+        guard let email = emailTextField.text, emailTextField.text != "" else {
+            setPlaceholderColor(for: usernameTextField)
+            emailTextField.becomeFirstResponder()
+            return
+        }
+        guard let password = passwordTextField.text, passwordTextField.text != "" else {
+            setPlaceholderColor(for: usernameTextField)
+            passwordTextField.becomeFirstResponder()
             return
         }
         
@@ -104,34 +83,102 @@ class CreateAccountViewController: UIViewController {
         spinner.startAnimating()
         view.isUserInteractionEnabled = false
         
-        AuthenticationService.instance.registerUser(email: email, password: password) { [weak self] success in
-            guard success else {
-                self?.view.isUserInteractionEnabled = true
-                return
-            }
-            AuthenticationService.instance.loginUser(email: email, password: password, completion: { success in
+        AuthenticationService
+            .instance
+            .registerUser(
+                email: email,
+                password: password)
+            { [weak self] success in
                 guard success else {
                     self?.view.isUserInteractionEnabled = true
                     return
                 }
-                guard
-                    let avatarName = self?.avatarName,
-                    let avatarColor = self?.avatarColor
-                else {
-                    self?.view.isUserInteractionEnabled = true
-                    return
-                }
-                AuthenticationService.instance.createUser(name: name, email: email, avatarName: avatarName, avatarColor: avatarColor, completion: { success in
-                    self?.view.isUserInteractionEnabled = true
-                    guard success else { return }
-                    
-                    self?.spinner.isHidden = true
-                    self?.spinner.stopAnimating()
-                    NotificationCenter.default.post(name: NOTIFICATION_USER_DATA_DID_CHANGE, object: nil)
-                    self?.performSegue(withIdentifier: UNWIND_TO_CHANNEL, sender: nil)
-                })
-            })
+                AuthenticationService
+                    .instance
+                    .loginUser(
+                        email: email,
+                        password: password)
+                    { success in
+                        guard success else {
+                            self?.view.isUserInteractionEnabled = true
+                            return
+                        }
+                        guard
+                            let avatarName = self?.avatarName,
+                            let avatarColor = self?.avatarColor
+                        else {
+                            self?.view.isUserInteractionEnabled = true
+                            return
+                        }
+
+                        AuthenticationService
+                            .instance
+                            .createUser(
+                                name: name,
+                                email: email,
+                                avatarName: avatarName,
+                                avatarColor: avatarColor)
+                            { success in
+                                self?.view.isUserInteractionEnabled = true
+                                guard success else { return }
+
+                                self?.spinner.isHidden = true
+                                self?.spinner.stopAnimating()
+                                NotificationCenter.default.post(name: NOTIFICATION_USER_DATA_DID_CHANGE, object: nil)
+                                self?.performSegue(withIdentifier: UNWIND_TO_CHANNEL, sender: nil)
+                            }
+                    }
+            }
+    }
+
+    private func setupView() {
+        spinner.isHidden = true
+
+        usernameTextField.becomeFirstResponder()
+
+        usernameTextField.attributedPlaceholder = NSAttributedString(
+            string: Placeholders.userName.rawValue,
+            attributes: [NSAttributedString.Key.foregroundColor: purplePlaceholder])
+
+        emailTextField.attributedPlaceholder = NSAttributedString(
+            string: Placeholders.userEmail.rawValue,
+            attributes: [NSAttributedString.Key.foregroundColor: purplePlaceholder])
+
+        passwordTextField.attributedPlaceholder = NSAttributedString(
+            string: Placeholders.userPassword.rawValue,
+            attributes: [NSAttributedString.Key.foregroundColor: purplePlaceholder])
+    }
+
+    private func setupDelegate() {
+        usernameTextField.delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+    }
+
+    private func setupBehaviour() {
+        view.addGestureRecognizer(UITapGestureRecognizer(
+            target: self,
+            action: #selector(CreateAccountViewController.handleTap)))
+    }
+
+    private func setPlaceholderColor(for textField: UITextField) {
+        if textField == usernameTextField {
+            textField.attributedPlaceholder = NSAttributedString(
+                string: Placeholders.userNameRequired.rawValue,
+                attributes: [NSAttributedString.Key.foregroundColor: redPlaceholder])
+        } else if textField == emailTextField {
+            textField.attributedPlaceholder = NSAttributedString(
+                string: Placeholders.userEmailRequired.rawValue,
+                attributes: [NSAttributedString.Key.foregroundColor: redPlaceholder])
+        } else if textField == passwordTextField {
+            textField.attributedPlaceholder = NSAttributedString(
+                string: Placeholders.userPasswordRequired.rawValue,
+                attributes: [NSAttributedString.Key.foregroundColor: redPlaceholder])
         }
+    }
+
+    @objc func handleTap() {
+        view.endEditing(true)
     }
 }
 

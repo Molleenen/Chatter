@@ -18,6 +18,21 @@ let URL_GET_MESSAGES = "\(BASE_URL)message/byChannel/"
 
 // Colors
 let purplePlaceholder = #colorLiteral(red: 0.2588235294, green: 0.3294117647, blue: 0.7254901961, alpha: 0.5)
+let redPlaceholder = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 0.5)
+
+// Text fields Placeholders
+enum Placeholders: String {
+    case channelName = "name"
+    case channelDescription = "description"
+    case channelNameRequired = "name is required"
+
+    case userName = "username"
+    case userEmail = "email"
+    case userPassword = "password"
+    case userNameRequired = "username is required"
+    case userEmailRequired = "email is required"
+    case userPasswordRequired = "password is required"
+}
 
 // Notification Constants
 let NOTIFICATION_USER_DATA_DID_CHANGE = Notification.Name("notificationUserDataChanged")

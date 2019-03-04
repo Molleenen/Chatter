@@ -24,31 +24,34 @@ class AddChannelViewController: UIViewController {
     }
     
     @IBAction func createChannelButtonPressed(_ sender: Any) {
-        // TODO - channel name is required
-        guard
-            let channelName = channelNameTextField.text, !channelName.isEmpty,
-            let channelDescription = channelDescriptionTextField.text
-        else {
+        guard let channelName = channelNameTextField.text, !channelName.isEmpty else {
+            setPlaceholderColor(for: channelNameTextField)
+            channelNameTextField.becomeFirstResponder()
             return
         }
+        guard let channelDescription = channelDescriptionTextField.text else { return }
         
-        SocketService.instance.addChannel(channelName: channelName, channelDescription: channelDescription) { success in
-            guard success else { return }
-            view.endEditing(true)
-            dismiss(animated: true, completion: nil)
+        SocketService
+            .instance
+            .addChannel(
+                channelName: channelName,
+                channelDescription: channelDescription)
+            { success in
+                guard success else { return }
+                view.endEditing(true)
+                dismiss(animated: true, completion: nil)
         }
     }
 
     private func setupView() {
         channelNameTextField.becomeFirstResponder()
 
-        channelNameTextField.attributedPlaceholder = NSAttributedString(string: "name", attributes: [NSAttributedString.Key.foregroundColor: purplePlaceholder])
-        channelDescriptionTextField.attributedPlaceholder = NSAttributedString(string: "description", attributes: [NSAttributedString.Key.foregroundColor: purplePlaceholder])
-    }
-
-    @objc func handleTap() {
-        view.endEditing(true)
-        dismiss(animated: true, completion: nil)
+        channelNameTextField.attributedPlaceholder = NSAttributedString(
+            string: Placeholders.channelName.rawValue,
+            attributes: [NSAttributedString.Key.foregroundColor: purplePlaceholder])
+        channelDescriptionTextField.attributedPlaceholder = NSAttributedString(
+            string: Placeholders.channelDescription.rawValue,
+            attributes: [NSAttributedString.Key.foregroundColor: purplePlaceholder])
     }
 
     private func setupDelegate() {
@@ -58,6 +61,19 @@ class AddChannelViewController: UIViewController {
 
     private func setupBehaviour() {
         backgroundView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(AddChannelViewController.handleTap)))
+    }
+
+    private func setPlaceholderColor(for textField: UITextField) {
+        if textField == channelNameTextField {
+            textField.attributedPlaceholder = NSAttributedString(
+                string: Placeholders.channelNameRequired.rawValue,
+                attributes: [NSAttributedString.Key.foregroundColor: redPlaceholder])
+        }
+    }
+
+    @objc func handleTap() {
+        view.endEditing(true)
+        dismiss(animated: true, completion: nil)
     }
 }
 

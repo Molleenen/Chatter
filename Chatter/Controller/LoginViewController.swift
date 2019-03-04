@@ -6,11 +6,6 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-    
-    private enum Keys: String {
-        case email = "email"
-        case password = "password"
-    }
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -21,29 +16,6 @@ class LoginViewController: UIViewController {
         setupView()
         setupDelegate()
         setupBehaviour()
-    }
-    
-    private func setupView() {
-        spinner.isHidden = true
-        
-        emailTextField.becomeFirstResponder()
-        
-        // TODO - constants
-        emailTextField.attributedPlaceholder = NSAttributedString(string: Keys.email.rawValue, attributes: [NSAttributedString.Key.foregroundColor: purplePlaceholder])
-        passwordTextField.attributedPlaceholder = NSAttributedString(string: Keys.password.rawValue, attributes: [NSAttributedString.Key.foregroundColor: purplePlaceholder])
-    }
-    
-    private func setupDelegate() {
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
-    }
-    
-    private func setupBehaviour() {
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(LoginViewController.handleTap)))
-    }
-    
-    @objc func handleTap() {
-        view.endEditing(true)
     }
 
     @IBAction func closeButtonPressed(_ sender: Any) {
@@ -56,15 +28,15 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginButtonPressed(_ sender: Any) {
-        
-        // TODO - dividie guards and check empty textfields and change background
-        
+
         guard let email = emailTextField.text, !email.isEmpty else {
-            emailTextField.backgroundColor = UIColor.red
+            setPlaceholderColor(for: emailTextField)
+            emailTextField.becomeFirstResponder()
             return
         }
         guard let password = passwordTextField.text, !password.isEmpty else {
-            emailTextField.backgroundColor = UIColor.red
+            setPlaceholderColor(for: passwordTextField)
+            passwordTextField.becomeFirstResponder()
             return
         }
         
@@ -89,6 +61,44 @@ class LoginViewController: UIViewController {
                 self?.dismiss(animated: true, completion: nil)
             })
         }
+    }
+
+    private func setupView() {
+        spinner.isHidden = true
+
+        emailTextField.becomeFirstResponder()
+
+        emailTextField.attributedPlaceholder = NSAttributedString(
+            string: Placeholders.userEmail.rawValue,
+            attributes: [NSAttributedString.Key.foregroundColor: purplePlaceholder])
+        passwordTextField.attributedPlaceholder = NSAttributedString(
+            string: Placeholders.userPassword.rawValue,
+            attributes: [NSAttributedString.Key.foregroundColor: purplePlaceholder])
+    }
+
+    private func setupDelegate() {
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+    }
+
+    private func setupBehaviour() {
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(LoginViewController.handleTap)))
+    }
+
+    private func setPlaceholderColor(for textField: UITextField) {
+        if textField == emailTextField {
+            textField.attributedPlaceholder = NSAttributedString(
+                string: Placeholders.userEmailRequired.rawValue,
+                attributes: [NSAttributedString.Key.foregroundColor: redPlaceholder])
+        } else if textField == passwordTextField {
+            textField.attributedPlaceholder = NSAttributedString(
+                string: Placeholders.userPasswordRequired.rawValue,
+                attributes: [NSAttributedString.Key.foregroundColor: redPlaceholder])
+        }
+    }
+
+    @objc func handleTap() {
+        view.endEditing(true)
     }
 }
 
