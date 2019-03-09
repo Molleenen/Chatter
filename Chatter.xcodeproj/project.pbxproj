@@ -21,6 +21,7 @@
 		EA2EA9B62216E02200DD609B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EA9B52216E02200DD609B /* Constants.swift */; };
 		EA2EA9B82216E43C00DD609B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EA9B72216E43C00DD609B /* LoginViewController.swift */; };
 		EA2EA9BC2216EF2A00DD609B /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EA9BB2216EF2A00DD609B /* CreateAccountViewController.swift */; };
+		EA36369A22316BAD00F86968 /* Keyboard+LayoutGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA36369922316BAD00F86968 /* Keyboard+LayoutGuide.swift */; };
 		EA417A5322202380003485A7 /* MessageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA417A5222202380003485A7 /* MessageService.swift */; };
 		EA417A55222023AE003485A7 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA417A54222023AE003485A7 /* Channel.swift */; };
 		EA417A572220292F003485A7 /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA417A562220292F003485A7 /* ChannelCell.swift */; };
@@ -57,6 +58,7 @@
 		EA2EA9B52216E02200DD609B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		EA2EA9B72216E43C00DD609B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EA2EA9BB2216EF2A00DD609B /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		EA36369922316BAD00F86968 /* Keyboard+LayoutGuide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Keyboard+LayoutGuide.swift"; sourceTree = "<group>"; };
 		EA417A5222202380003485A7 /* MessageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageService.swift; sourceTree = "<group>"; };
 		EA417A54222023AE003485A7 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		EA417A562220292F003485A7 /* ChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 		EA2EA9A62216D12300DD609B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EA36369922316BAD00F86968 /* Keyboard+LayoutGuide.swift */,
 				EA2EA9A92216D14100DD609B /* SWRevealViewController.h */,
 				EA2EA9A82216D14100DD609B /* SWRevealViewController.m */,
 				EA2EA9A72216D14000DD609B /* Chatter-Bridging-Header.h */,
@@ -351,6 +354,7 @@
 				EA417A572220292F003485A7 /* ChannelCell.swift in Sources */,
 				EAC9F9CA2226DB2E008EDE41 /* RoundedView.swift in Sources */,
 				EA08D9D82217558E0062EA3D /* RoundedButton.swift in Sources */,
+				EA36369A22316BAD00F86968 /* Keyboard+LayoutGuide.swift in Sources */,
 				EA05BFAF2216CE7B000C8D0D /* AppDelegate.swift in Sources */,
 				EABA6353221AEBB000111D66 /* CircleImage.swift in Sources */,
 				EAE4E50D2223FCE200EFDDB1 /* Message.swift in Sources */,

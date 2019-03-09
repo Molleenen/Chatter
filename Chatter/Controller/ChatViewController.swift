@@ -13,6 +13,7 @@ class ChatViewController: UIViewController {
     }
 
     @IBOutlet weak var messageTextView: UITextView!
+    @IBOutlet weak var messagePlaceholder: UILabel!
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var channelNameLabel: UILabel!
     @IBOutlet weak var messageTableView: UITableView!
@@ -24,15 +25,17 @@ class ChatViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        setupSockets()
+        setupDelegate()
         setupTableView()
         setupBehaviour()
-        setupSockets()
         setupNotifications()
     }
     
     func updateWithChannel() {
         let channelName = MessageService.instance.channelSelected?.name ?? ""
         channelNameLabel.text = "#\(channelName)"
+        messagePlaceholder.isHidden = false
         getMessages()
     }
     
@@ -50,12 +53,16 @@ class ChatViewController: UIViewController {
     
     func getMessages() {
         guard let channelId = MessageService.instance.channelSelected?.id else { return }
-        MessageService.instance.findAllMessagesForChannel(channelId: channelId) { success in
+        MessageService.instance.findAllMessagesForChannel(channelId: channelId) { [weak self] success in
             guard success else {
                 print("Error getting messages for channel with id: \(channelId)")
                 return
             }
-            self.messageTableView.reloadData()
+            self?.messageTableView.reloadData()
+
+            guard !MessageService.instance.messages.isEmpty else { return }
+            let indexPath = IndexPath(row: MessageService.instance.messages.count - 1, section: 0)
+            self?.messageTableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
         }
     }
     
@@ -95,13 +102,28 @@ class ChatViewController: UIViewController {
         ) { success in
             guard success else { return }
             self.messageTextView.text = ""
+            self.sendButton.isHidden = true
+            self.messagePlaceholder.isHidden = false
             SocketService.instance.socket.emit(Keys.userStoppedTyping.rawValue, UserDataService.instance.name, channelId)
         }
     }
     
     private func setupView() {
+        if !AuthenticationService.instance.isLoggedIn {
+            channelNameLabel.text = "Please log in"
+            messagePlaceholder.isHidden = true
+        }
         sendButton.isHidden = true
-        menuButton.addTarget(self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
+        menuButton.addTarget(
+            self.revealViewController(),
+            action: #selector(SWRevealViewController.revealToggle(_:)),
+            for: .touchUpInside)
+
+        messageTextView
+            .bottomAnchor
+            .constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -8)
+            .isActive = true
+
         view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
     }
@@ -110,25 +132,17 @@ class ChatViewController: UIViewController {
         view.endEditing(true)
     }
     
-    @objc func keyboardWillChange(_ notification: Notification) {
-        let duration = notification.userInfo![UIResponder.keyboardAnimationDurationUserInfoKey] as! Double
-        let curve = notification.userInfo![UIResponder.keyboardAnimationCurveUserInfoKey] as! UInt
-        let curFrame = (notification.userInfo![UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
-        let targetFrame = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        let deltaY = targetFrame.origin.y - curFrame.origin.y
-        
-        UIView.animateKeyframes(withDuration: duration, delay: 0.0, options: UIView.KeyframeAnimationOptions(rawValue: curve), animations: {
-            self.view.frame.origin.y += deltaY
-            
-        },completion: {(true) in
-            self.view.layoutIfNeeded()
-        })
+    @objc func keyboardDidChange(_ notification: Notification) {
+        guard !MessageService.instance.messages.isEmpty else { return }
+        let indexPath = IndexPath(row: MessageService.instance.messages.count - 1, section: 0)
+        messageTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
     }
-    
+
     @objc func userDataDidChange() {
         if AuthenticationService.instance.isLoggedIn {
             onLoginGetMessages()
         } else {
+            messagePlaceholder.isHidden = true
             channelNameLabel.text = "Please Log In"
             messageTableView.reloadData()
         }
@@ -138,14 +152,22 @@ class ChatViewController: UIViewController {
     }
     
     private func setupTableView() {
-        messageTableView.delegate = self
-        messageTableView.dataSource = self
         messageTableView.estimatedRowHeight = 80
         messageTableView.rowHeight = UITableView.automaticDimension
     }
+
+    private func setupDelegate() {
+        messageTextView.delegate = self
+        messageTableView.delegate = self
+        messageTableView.dataSource = self
+        revealViewController()?.delegate = self
+    }
     
     private func setupBehaviour() {
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ChatViewController.handleTap)))
+        view.addGestureRecognizer(
+            UITapGestureRecognizer(
+                target: self,
+                action: #selector(ChatViewController.handleTap)))
     }
     
     private func setupSockets() {
@@ -159,11 +181,10 @@ class ChatViewController: UIViewController {
             
             MessageService.instance.messages.append(newMessage)
             self?.messageTableView.reloadData()
-            
             guard !MessageService.instance.messages.isEmpty else { return }
-            
-            let endIndex = IndexPath(row: MessageService.instance.messages.count - 1 , section: 0)
-            self?.messageTableView.scrollToRow(at: endIndex, at: .bottom, animated: false)
+            let indexPath = IndexPath(row: MessageService.instance.messages.count - 1, section: 0)
+            self?.messageTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+
         }
         
         SocketService.instance.getTypingUsers { [weak self] typingUsers in
@@ -215,8 +236,8 @@ class ChatViewController: UIViewController {
         
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(ChatViewController.keyboardWillChange(_:)),
-            name: UIResponder.keyboardWillChangeFrameNotification,
+            selector: #selector(ChatViewController.keyboardDidChange(_:)),
+            name: UIResponder.keyboardDidChangeFrameNotification,
             object: nil)
     }
     
@@ -243,5 +264,26 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         let message = MessageService.instance.messages[indexPath.row]
         cell.configureCell(message: message)
         return cell
+    }
+}
+
+extension ChatViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        if textView.text != nil, textView.text != "" {
+            sendButton.isHidden = false
+            messagePlaceholder.isHidden = true
+
+        } else {
+            sendButton.isHidden = true
+            messagePlaceholder.isHidden = false
+        }
+    }
+}
+
+extension ChatViewController: SWRevealViewControllerDelegate {
+    func revealController(_ revealController: SWRevealViewController!, willMoveTo position: FrontViewPosition) {
+        if messageTextView.isFirstResponder {
+            messageTextView.resignFirstResponder()
+        }
     }
 }
