@@ -7,37 +7,37 @@ import UIKit
 
 class AvatarPickerViewController: UIViewController {
 
+    private var avatarType = AvatarType.dark
+
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var segmentControl: UISegmentedControl!
-    
-    private var avatarType = AvatarType.dark
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDelegate()
-    }
-    
-    @IBAction func segmentControlChanged(_ sender: Any) {
-        if segmentControl.selectedSegmentIndex == 0 {
-            avatarType = .dark
-        } else {
-            avatarType = .light
-        }
-        
-        collectionView.reloadData()
-    }
-
-    @IBAction func backButtonPressed(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
     }
 
     private func setupDelegate() {
         collectionView.delegate = self
         collectionView.dataSource = self
     }
+
+    @IBAction func segmentControlChanged(_ sender: Any) {
+        if segmentControl.selectedSegmentIndex == 0 {
+            avatarType = .dark
+        } else {
+            avatarType = .light
+        }
+        collectionView.reloadData()
+    }
+
+    @IBAction func backButtonPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 }
 
-extension AvatarPickerViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension AvatarPickerViewController: UICollectionViewDelegate, UICollectionViewDataSource,
+    UICollectionViewDelegateFlowLayout {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -47,7 +47,11 @@ extension AvatarPickerViewController: UICollectionViewDelegate, UICollectionView
         return 28
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
+
         guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: Cell.avatarCell.rawValue,
             for: indexPath) as? AvatarCell
@@ -58,7 +62,11 @@ extension AvatarPickerViewController: UICollectionViewDelegate, UICollectionView
         return cell
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
 
         var numbersOfColumns: CGFloat = 3
         if UIScreen.main.bounds.width > 320 {
@@ -67,7 +75,8 @@ extension AvatarPickerViewController: UICollectionViewDelegate, UICollectionView
 
         let spaceBetweenCells: CGFloat = 10
         let padding: CGFloat = 40
-        let cellDimension = ((collectionView.bounds.width - padding) - (numbersOfColumns - 1) * spaceBetweenCells) / numbersOfColumns
+        let cellDimension =
+            ((collectionView.bounds.width - padding) - (numbersOfColumns - 1) * spaceBetweenCells) / numbersOfColumns
 
         return CGSize(width: cellDimension, height: cellDimension)
     }

@@ -10,37 +10,17 @@ class AddChannelViewController: UIViewController {
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var channelNameTextField: UITextField!
     @IBOutlet weak var channelDescriptionTextField: UITextField!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         setupDelegate()
         setupBehaviour()
     }
-    
-    @IBAction func closeButtonPressed(_ sender: Any) {
+
+    @objc func handleTap() {
         view.endEditing(true)
         dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func createChannelButtonPressed(_ sender: Any) {
-        guard let channelName = channelNameTextField.text, !channelName.isEmpty else {
-            setPlaceholderColor(for: channelNameTextField)
-            channelNameTextField.becomeFirstResponder()
-            return
-        }
-        guard let channelDescription = channelDescriptionTextField.text else { return }
-        
-        SocketService
-            .instance
-            .addChannel(
-                channelName: channelName,
-                channelDescription: channelDescription)
-            { success in
-                guard success else { return }
-                view.endEditing(true)
-                dismiss(animated: true, completion: nil)
-        }
     }
 
     private func setupView() {
@@ -60,7 +40,11 @@ class AddChannelViewController: UIViewController {
     }
 
     private func setupBehaviour() {
-        backgroundView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(AddChannelViewController.handleTap)))
+        backgroundView
+            .addGestureRecognizer(
+                UITapGestureRecognizer(
+                    target: self,
+                    action: #selector(AddChannelViewController.handleTap)))
     }
 
     private func setPlaceholderColor(for textField: UITextField) {
@@ -71,9 +55,28 @@ class AddChannelViewController: UIViewController {
         }
     }
 
-    @objc func handleTap() {
+    @IBAction func closeButtonPressed(_ sender: Any) {
         view.endEditing(true)
         dismiss(animated: true, completion: nil)
+    }
+
+    @IBAction func createChannelButtonPressed(_ sender: Any) {
+        guard let channelName = channelNameTextField.text, !channelName.isEmpty else {
+            setPlaceholderColor(for: channelNameTextField)
+            channelNameTextField.becomeFirstResponder()
+            return
+        }
+        guard let channelDescription = channelDescriptionTextField.text else { return }
+
+        SocketService
+            .instance
+            .addChannel(
+                channelName: channelName,
+                channelDescription: channelDescription) { success in
+                    guard success else { return }
+                    view.endEditing(true)
+                    dismiss(animated: true, completion: nil)
+        }
     }
 }
 

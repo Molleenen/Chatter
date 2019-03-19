@@ -7,35 +7,39 @@ import UIKit
 import SocketIO
 
 class SocketService: NSObject {
-    
-    private enum Keys: String {
-        case newChannel = "newChannel"
-        case channelCreated = "channelCreated"
-        case newMessage = "newMessage"
-        case messageCreated = "messageCreated"
-        case userTypingUpdate = "userTypingUpdate"
+
+    private enum SocketKeys: String {
+        case newChannel
+        case channelCreated
+        case newMessage
+        case messageCreated
+        case userTypingUpdate
     }
-    
+
     static let instance = SocketService()
-    
+
     private var manager = SocketManager(socketURL: URL(string: BASE_URL)!)
     lazy var socket: SocketIOClient = manager.defaultSocket
-    
+
     func establishConnection() {
         socket.connect()
     }
-    
+
     func closeConnection() {
         socket.disconnect()
     }
-    
-    func addChannel(channelName: String, channelDescription: String, completion: CompletionHandler) {
-        socket.emit(Keys.newChannel.rawValue, channelName, channelDescription)
+
+    func addChannel(
+        channelName: String,
+        channelDescription: String,
+        completion: CompletionHandler
+    ) {
+        socket.emit(SocketKeys.newChannel.rawValue, channelName, channelDescription)
         completion(true)
     }
-    
+
     func getChannel(completion: @escaping CompletionHandler) {
-        socket.on(Keys.channelCreated.rawValue) { dataArray, acknowledgment in
+        socket.on(SocketKeys.channelCreated.rawValue) { dataArray, _ in
             guard dataArray.count >= 3 else {
                 completion(false)
                 return
@@ -47,26 +51,33 @@ class SocketService: NSObject {
             else {
                 return
             }
-            
-            let newChannel = Channel(id: channelId, name: channelName, description: channelDescription)
+
+            let newChannel = Channel(identifier: channelId, name: channelName, description: channelDescription)
             MessageService.instance.channels.append(newChannel)
             completion(true)
         }
     }
-    
+
     func addMessage(
         messageBody: String,
         userId: String,
         channelId: String,
-        completion: CompletionHandler) {
+        completion: CompletionHandler
+    ) {
 
         let user = UserDataService.instance
-        socket.emit(Keys.newMessage.rawValue, messageBody, userId, channelId, user.name, user.avatarName, user.avatarColor)
+        socket.emit(
+            SocketKeys.newMessage.rawValue,
+            messageBody,
+            userId, channelId,
+            user.name,
+            user.avatarName,
+            user.avatarColor)
         completion(true)
     }
-    
+
     func getChatMessage(_ completionHandler: @escaping (Message) -> Void) {
-        socket.on(Keys.messageCreated.rawValue) { dataArray, acknoledgment in
+        socket.on(SocketKeys.messageCreated.rawValue) { dataArray, _ in
             guard dataArray.count >= 6 else {
                 return
             }
@@ -81,22 +92,22 @@ class SocketService: NSObject {
             else {
                 return
             }
-            
+
             let newMessage = Message(
-                id: messageId,
+                identifier: messageId,
                 messageBody: messageBody,
                 timeStamp: timeStamp,
                 channelId: channelId,
                 userName: userName,
                 userAvatar: userAvatar,
                 userAvatarColor: userAvatarColor)
-            
+
             completionHandler(newMessage)
         }
     }
-    
+
     func getTypingUsers(_ completionHandler: @escaping ([String: String]) -> Void) {
-        socket.on(Keys.userTypingUpdate.rawValue) { dataArray, acknowledgment in
+        socket.on(SocketKeys.userTypingUpdate.rawValue) { dataArray, _ in
             guard !dataArray.isEmpty else {
                 return
             }

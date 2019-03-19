@@ -8,7 +8,7 @@ import UIKit
 class ChannelCell: UITableViewCell {
 
     @IBOutlet weak var channelName: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         layer.cornerRadius = 10
@@ -23,17 +23,16 @@ class ChannelCell: UITableViewCell {
             layer.backgroundColor = UIColor.clear.cgColor
         }
     }
-    
+
     func configureCell(channel: Channel) {
-        let name = channel.name 
+        let name = channel.name
         channelName.text = "#\(name)"
         channelName.font = UIFont(name: HELVETICA_REGULAR, size: 17)
-        
-        for id in MessageService.instance.unreadChannels {
-            if id == channel.id {
+
+        for identifier in MessageService.instance.unreadChannels {
+            if identifier == channel.identifier {
                 channelName.font = UIFont(name: HELVETICA_BOLD, size: 22)
             }
         }
     }
-    
 }

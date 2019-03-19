@@ -13,16 +13,16 @@ class RoundedView: UIView {
             layer.cornerRadius = cornerRadious
         }
     }
-    
+
     override func awakeFromNib() {
         setupView()
     }
-    
+
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         setupView()
     }
-    
+
     private func setupView() {
         layer.cornerRadius = cornerRadious
     }

@@ -11,14 +11,14 @@ enum AvatarType {
 }
 
 class AvatarCell: UICollectionViewCell {
-    
+
     @IBOutlet weak var avatarImage: UIImageView!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         setupView()
     }
-    
+
     func configureCell(index: Int, type: AvatarType) {
         if type == AvatarType.dark {
             avatarImage.image = UIImage(named: "dark\(index)")
@@ -28,7 +28,7 @@ class AvatarCell: UICollectionViewCell {
             layer.backgroundColor = UIColor.gray.cgColor
         }
     }
-    
+
     private func setupView() {
         layer.backgroundColor = UIColor.lightGray.cgColor
         layer.cornerRadius = 10

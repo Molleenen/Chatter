@@ -5,7 +5,7 @@
 
 import Foundation
 
-typealias CompletionHandler = (Bool) -> (Void)
+typealias CompletionHandler = (Bool) -> Void
 
 // URL Constants
 let BASE_URL = "https://fierce-oasis-16295.herokuapp.com/v1/"
@@ -51,9 +51,9 @@ let TO_AVATAR_PICKER = "toAvatarPicker"
 
 // Cells identifiers
 enum Cell: String {
-    case messageCell = "messageCell"
-    case channelCell = "channelCell"
-    case avatarCell = "avatarCell"
+    case messageCell
+    case channelCell
+    case avatarCell
 }
 
 // User Defaults Keys

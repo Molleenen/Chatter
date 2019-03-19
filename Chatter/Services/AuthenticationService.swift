@@ -10,7 +10,7 @@ import SwiftyJSON
 class AuthenticationService {
 
     private enum Keys: String {
-        case id = "_id"
+        case userId = "_id"
         case user = "user"
         case userName = "name"
         case userEmail = "email"
@@ -19,11 +19,11 @@ class AuthenticationService {
         case userAvatarColor = "avatarColor"
         case authenticationToken = "token"
     }
-    
+
     static let instance = AuthenticationService()
-    
+
     let defaults = UserDefaults.standard
-    
+
     var isLoggedIn: Bool {
         get {
             return defaults.bool(forKey: LOGGED_IN)
@@ -32,7 +32,7 @@ class AuthenticationService {
             defaults.set(newValue, forKey: LOGGED_IN)
         }
     }
-    
+
     var authenticationToken: String {
         get {
             guard let token = defaults.value(forKey: TOKEN) as? String else {
@@ -44,7 +44,7 @@ class AuthenticationService {
             defaults.set(newValue, forKey: TOKEN)
         }
     }
-    
+
     var userEmail: String {
         get {
             guard let userEmail = defaults.value(forKey: USER_EMAIL) as? String else {
@@ -56,16 +56,20 @@ class AuthenticationService {
             defaults.set(newValue, forKey: USER_EMAIL)
         }
     }
-    
-    func registerUser(email: String, password: String, completion: @escaping CompletionHandler) {
-        
+
+    func registerUser(
+        email: String,
+        password: String,
+        completion: @escaping CompletionHandler
+    ) {
+
         let lowerCaseEmail = email.lowercased()
-        
+
         let body: [String: Any] = [
             Keys.userEmail.rawValue: lowerCaseEmail,
             Keys.userPassword.rawValue: password
         ]
-        
+
         Alamofire
             .request(
                 URL_REGISTER,
@@ -82,16 +86,20 @@ class AuthenticationService {
                 completion(true)
             }
     }
-    
-    func loginUser(email: String, password: String, completion: @escaping CompletionHandler) {
-        
+
+    func loginUser(
+        email: String,
+        password: String,
+        completion: @escaping CompletionHandler
+    ) {
+
         let lowerCaseEmail = email.lowercased()
-        
+
         let body: [String: Any] = [
             Keys.userEmail.rawValue: lowerCaseEmail,
             Keys.userPassword.rawValue: password
         ]
-        
+
         Alamofire
             .request(
                 URL_LOGIN,
@@ -130,24 +138,24 @@ class AuthenticationService {
                 completion(true)
             }
     }
-    
+
     func createUser(
         name: String,
         email: String,
         avatarName: String,
         avatarColor: String,
-        completion: @escaping CompletionHandler) {
+        completion: @escaping CompletionHandler
+    ) {
 
-        
         let lowerCaseEmail = email.lowercased()
-        
+
         let body: [String: Any] = [
             Keys.userName.rawValue: name,
             Keys.userEmail.rawValue: lowerCaseEmail,
             Keys.userAvatarName.rawValue: avatarName,
             Keys.userAvatarColor.rawValue: avatarColor
         ]
-        
+
         Alamofire
             .request(
                 URL_USER_ADD,
@@ -156,7 +164,7 @@ class AuthenticationService {
                 encoding: JSONEncoding.default,
                 headers: BEARER_HEADER)
             .responseJSON { [weak self] response in
-            
+
                 guard response.result.error == nil else {
                     debugPrint(response.result.error as Any)
                     completion(false)
@@ -170,9 +178,9 @@ class AuthenticationService {
                 completion(true)
         }
     }
-    
+
     func findUserByEmail(completion: @escaping CompletionHandler) {
-        
+
         Alamofire
             .request(
                 "\(URL_USER_BY_EMAIL)\(userEmail)",
@@ -180,7 +188,7 @@ class AuthenticationService {
                 encoding: JSONEncoding.default,
                 headers: BEARER_HEADER)
             .responseJSON { [weak self] response in
-            
+
                 guard response.result.error == nil else {
                     debugPrint(response.result.error as Any)
                     completion(false)
@@ -194,12 +202,12 @@ class AuthenticationService {
                 completion(true)
         }
     }
-    
+
     func setUserInfo(data: Data) {
         do {
             let json = try JSON(data: data)
             guard
-                let id = json[Keys.id.rawValue].string,
+                let userId = json[Keys.userId.rawValue].string,
                 let avatarColor = json[Keys.userAvatarColor.rawValue].string,
                 let avatarName = json[Keys.userAvatarName.rawValue].string,
                 let email = json[Keys.userEmail.rawValue].string,
@@ -207,11 +215,11 @@ class AuthenticationService {
             else {
                  return
             }
-            
+
             UserDataService
                 .instance
                 .setUserData(
-                    id: id,
+                    userId: userId,
                     avatarColor:
                     avatarColor,
                     avatarName:
