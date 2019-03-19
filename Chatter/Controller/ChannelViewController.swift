@@ -14,8 +14,8 @@ class ChannelViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.revealViewController()?.rearViewRevealWidth = self.view.frame.size.width * 0.75
-        setupUserInfo()
         setupTableView()
+        setupUserInfo()
         setupSockets()
         setupNotifications()
     }
@@ -45,6 +45,11 @@ class ChannelViewController: UIViewController {
     }
     @objc func channelsLoaded() {
         channelTableView.reloadData()
+        if let _ = MessageService.instance.channels.first {
+            let indexPath = IndexPath(row: 0, section: 0)
+            channelTableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+        }
+
     }
     
     private func setupUserInfo() {
@@ -52,7 +57,10 @@ class ChannelViewController: UIViewController {
             loginButton.setTitle(UserDataService.instance.name, for: .normal)
             userImage.image = UIImage(named: UserDataService.instance.avatarName)
             userImage.backgroundColor = UserDataService.instance.returnUIColor(components: UserDataService.instance.avatarColor)
-            
+            if let _ = MessageService.instance.channels.first {
+                let indexPath = IndexPath(row: 0, section: 0)
+                channelTableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+            }
         } else {
             loginButton.setTitle("Login", for: .normal)
             userImage.image = UIImage(named: "menuProfileIcon")
@@ -69,8 +77,16 @@ class ChannelViewController: UIViewController {
     private func setupSockets() {
         SocketService.instance.getChannel { success in
             guard success else { return }
-            
             self.channelTableView.reloadData()
+
+            let index = MessageService.instance.channels.count - 1
+            let indexPath = IndexPath(row: index, section: 0)
+            let channel = MessageService.instance.channels[index]
+            MessageService.instance.channelSelected = channel
+
+            self.channelTableView.selectRow(at: indexPath, animated: true, scrollPosition: .bottom)
+            NotificationCenter.default.post(name: NOTIFICATION_CHANNEL_SELECTED, object: nil)
+            self.revealViewController()?.revealToggle(animated: true)
         }
         
         SocketService.instance.getChatMessage { newMessage in
