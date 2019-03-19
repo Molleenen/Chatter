@@ -13,6 +13,8 @@ class ChatViewController: UIViewController {
     }
 
     @IBOutlet weak var messageTextView: UITextView!
+    @IBOutlet weak var messageTexrViewWithoutScrollConstraint: NSLayoutConstraint!
+    @IBOutlet weak var messageTextViewWithScrollConstraint: NSLayoutConstraint!
     @IBOutlet weak var messagePlaceholder: UILabel!
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var channelNameLabel: UILabel!
@@ -277,6 +279,27 @@ extension ChatViewController: UITextViewDelegate {
             sendButton.isHidden = true
             messagePlaceholder.isHidden = false
         }
+
+        if let lineHeight = textView.font?.lineHeight {
+            let numberOfLines = Int(textView.contentSize.height / lineHeight)
+
+            if numberOfLines >= 3 {
+                messageTexrViewWithoutScrollConstraint.isActive = false
+                messageTextViewWithScrollConstraint.constant = textView.frame.height
+                messageTextViewWithScrollConstraint.isActive = true
+                textView.isScrollEnabled = true
+            } else {
+                messageTexrViewWithoutScrollConstraint.isActive = true
+                messageTextViewWithScrollConstraint.isActive = false
+                textView.isScrollEnabled = false
+            }
+        }
+
+
+        
+        guard !MessageService.instance.messages.isEmpty else { return }
+        let indexPath = IndexPath(row: MessageService.instance.messages.count - 1, section: 0)
+        self.messageTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
     }
 }
 
