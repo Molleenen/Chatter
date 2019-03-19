@@ -8,21 +8,21 @@ import Foundation
 typealias CompletionHandler = (Bool) -> Void
 
 // URL Constants
-let BASE_URL = "https://fierce-oasis-16295.herokuapp.com/v1/"
-let URL_REGISTER = "\(BASE_URL)account/register"
-let URL_LOGIN = "\(BASE_URL)account/login"
-let URL_USER_ADD = "\(BASE_URL)user/add"
-let URL_USER_BY_EMAIL = "\(BASE_URL)user/byEmail/"
-let URL_GET_CHANNELS = "\(BASE_URL)channel/"
-let URL_GET_MESSAGES = "\(BASE_URL)message/byChannel/"
+let baseUrl = "https://fierce-oasis-16295.herokuapp.com/v1/"
+let urlRegister = "\(baseUrl)account/register"
+let urlLogin = "\(baseUrl)account/login"
+let urlUserAdd = "\(baseUrl)user/add"
+let urlUserByEmail = "\(baseUrl)user/byEmail/"
+let urlGetChannels = "\(baseUrl)channel/"
+let urlGetMessages = "\(baseUrl)message/byChannel/"
 
 // Fonts
-let HELVETICA_REGULAR = "HelveticaNeue-Regular"
-let HELVETICA_BOLD = "HelveticaNeue-Bold"
+let helveticaRegular = "HelveticaNeue-Regular"
+let helveticaBold = "HelveticaNeue-Bold"
 
 // Colors
-let PURPLE_PLACEHOLDER = #colorLiteral(red: 0.2588235294, green: 0.3294117647, blue: 0.7254901961, alpha: 0.5)
-let RED_PLACEHOLDER = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 0.5)
+let purplePlaceholder = #colorLiteral(red: 0.2588235294, green: 0.3294117647, blue: 0.7254901961, alpha: 0.5)
+let redPlaceholder = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 0.5)
 
 // Text fields Placeholders
 enum Placeholders: String {
@@ -39,15 +39,17 @@ enum Placeholders: String {
 }
 
 // Notification Constants
-let NOTIFICATION_USER_DATA_DID_CHANGE = Notification.Name("notificationUserDataChanged")
-let NOTIFICATION_CHANNELS_LOADED = Notification.Name("channelsLoaded")
-let NOTIFICATION_CHANNEL_SELECTED = Notification.Name("channelSelected")
+let notificationUserDataDidChange = Notification.Name("notificationUserDataChanged")
+let notificationChannelsLoaded = Notification.Name("channelsLoaded")
+let notificationChannelSelected = Notification.Name("channelSelected")
 
 // Segues names
-let TO_LOGIN = "toLogin"
-let TO_CREATE_ACCOUNT = "toCreateAccount"
-let UNWIND_TO_CHANNEL = "unwindToChannel"
-let TO_AVATAR_PICKER = "toAvatarPicker"
+enum Segues: String {
+    case toLogin
+    case toCreateAccount
+    case unwindToChannel
+    case toAvatarPicker
+}
 
 // Cells identifiers
 enum Cell: String {
@@ -57,15 +59,18 @@ enum Cell: String {
 }
 
 // User Defaults Keys
-let TOKEN = "tokenKey"
-let LOGGED_IN = "loggedIn"
-let USER_EMAIL = "userEmail"
+enum UserDefaultsKeys: String {
+    case tokenKey
+    case loggedIn
+    case userEmail
+}
+
 
 // Headers
-let HEADER = [
+let header = [
     "Content-Type": "application/json; charset=utf-8"
 ]
-let BEARER_HEADER = [
+let bearerHeader = [
     "Authorization": "Bearer \(AuthenticationService.instance.authenticationToken)",
     "Content-Type": "application/json; charset=utf-8"
 ]

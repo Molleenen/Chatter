@@ -29,10 +29,10 @@ class LoginViewController: UIViewController {
 
         emailTextField.attributedPlaceholder = NSAttributedString(
             string: Placeholders.userEmail.rawValue,
-            attributes: [NSAttributedString.Key.foregroundColor: PURPLE_PLACEHOLDER])
+            attributes: [NSAttributedString.Key.foregroundColor: purplePlaceholder])
         passwordTextField.attributedPlaceholder = NSAttributedString(
             string: Placeholders.userPassword.rawValue,
-            attributes: [NSAttributedString.Key.foregroundColor: PURPLE_PLACEHOLDER])
+            attributes: [NSAttributedString.Key.foregroundColor: purplePlaceholder])
     }
 
     private func setupDelegate() {
@@ -51,11 +51,11 @@ class LoginViewController: UIViewController {
         if textField == emailTextField {
             textField.attributedPlaceholder = NSAttributedString(
                 string: Placeholders.userEmailRequired.rawValue,
-                attributes: [NSAttributedString.Key.foregroundColor: RED_PLACEHOLDER])
+                attributes: [NSAttributedString.Key.foregroundColor: redPlaceholder])
         } else if textField == passwordTextField {
             textField.attributedPlaceholder = NSAttributedString(
                 string: Placeholders.userPasswordRequired.rawValue,
-                attributes: [NSAttributedString.Key.foregroundColor: RED_PLACEHOLDER])
+                attributes: [NSAttributedString.Key.foregroundColor: redPlaceholder])
         }
     }
 
@@ -65,7 +65,7 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func createAccountButtonPressed(_ sender: Any) {
-        performSegue(withIdentifier: TO_CREATE_ACCOUNT, sender: nil)
+        performSegue(withIdentifier: Segues.toCreateAccount.rawValue, sender: nil)
     }
 
     @IBAction func loginButtonPressed(_ sender: Any) {
@@ -98,7 +98,7 @@ class LoginViewController: UIViewController {
 
                 self?.spinner.isHidden = true
                 self?.spinner.stopAnimating()
-                NotificationCenter.default.post(name: NOTIFICATION_USER_DATA_DID_CHANGE, object: nil)
+                NotificationCenter.default.post(name: notificationUserDataDidChange, object: nil)
                 self?.dismiss(animated: true, completion: nil)
             })
         }

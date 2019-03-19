@@ -67,7 +67,7 @@ class ChannelViewController: UIViewController {
             MessageService.instance.channelSelected = channel
 
             self.channelTableView.selectRow(at: indexPath, animated: true, scrollPosition: .bottom)
-            NotificationCenter.default.post(name: NOTIFICATION_CHANNEL_SELECTED, object: nil)
+            NotificationCenter.default.post(name: notificationChannelSelected, object: nil)
             self.revealViewController()?.revealToggle(animated: true)
         }
 
@@ -88,12 +88,12 @@ class ChannelViewController: UIViewController {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(ChannelViewController.userDataDidChange),
-            name: NOTIFICATION_USER_DATA_DID_CHANGE,
+            name: notificationUserDataDidChange,
             object: nil)
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(ChannelViewController.channelsLoaded),
-            name: NOTIFICATION_CHANNELS_LOADED,
+            name: notificationChannelsLoaded,
             object: nil)
     }
 
@@ -111,7 +111,7 @@ class ChannelViewController: UIViewController {
             profile.modalPresentationStyle = .custom
             present(profile, animated: true, completion: nil)
         } else {
-            performSegue(withIdentifier: TO_LOGIN, sender: nil)
+            performSegue(withIdentifier: Segues.toLogin.rawValue, sender: nil)
         }
     }
 
@@ -158,7 +158,7 @@ extension ChannelViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.reloadRows(at: [index], with: .none)
         tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
 
-        NotificationCenter.default.post(name: NOTIFICATION_CHANNEL_SELECTED, object: nil)
+        NotificationCenter.default.post(name: notificationChannelSelected, object: nil)
 
         revealViewController()?.revealToggle(animated: true)
     }

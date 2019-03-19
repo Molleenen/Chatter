@@ -45,11 +45,11 @@ class MessageService {
         ) {
         Alamofire
             .request(
-                "\(URL_GET_MESSAGES)\(channelId)",
+                "\(urlGetMessages)\(channelId)",
                 method: .get,
                 parameters: nil,
                 encoding: JSONEncoding.default,
-                headers: BEARER_HEADER)
+                headers: bearerHeader)
             .responseJSON { response in
 
                 guard response.result.error == nil else {
@@ -89,11 +89,11 @@ class MessageService {
 
         Alamofire
             .request(
-                URL_GET_CHANNELS,
+                urlGetChannels,
                 method: .get,
                 parameters: nil,
                 encoding: JSONEncoding.default,
-                headers: BEARER_HEADER)
+                headers: bearerHeader)
             .responseJSON { [weak self] response in
 
                 guard response.result.error == nil else {
@@ -118,7 +118,7 @@ class MessageService {
                         }
                     })
 
-                    NotificationCenter.default.post(name: NOTIFICATION_CHANNELS_LOADED, object: nil)
+                    NotificationCenter.default.post(name: notificationChannelsLoaded, object: nil)
                     completion(true)
                 } catch {
                     print("Error getting JSON from data")

@@ -49,15 +49,15 @@ class CreateAccountViewController: UIViewController {
 
         usernameTextField.attributedPlaceholder = NSAttributedString(
             string: Placeholders.userName.rawValue,
-            attributes: [NSAttributedString.Key.foregroundColor: PURPLE_PLACEHOLDER])
+            attributes: [NSAttributedString.Key.foregroundColor: purplePlaceholder])
 
         emailTextField.attributedPlaceholder = NSAttributedString(
             string: Placeholders.userEmail.rawValue,
-            attributes: [NSAttributedString.Key.foregroundColor: PURPLE_PLACEHOLDER])
+            attributes: [NSAttributedString.Key.foregroundColor: purplePlaceholder])
 
         passwordTextField.attributedPlaceholder = NSAttributedString(
             string: Placeholders.userPassword.rawValue,
-            attributes: [NSAttributedString.Key.foregroundColor: PURPLE_PLACEHOLDER])
+            attributes: [NSAttributedString.Key.foregroundColor: purplePlaceholder])
     }
 
     private func setupDelegate() {
@@ -76,26 +76,26 @@ class CreateAccountViewController: UIViewController {
         if textField == usernameTextField {
             textField.attributedPlaceholder = NSAttributedString(
                 string: Placeholders.userNameRequired.rawValue,
-                attributes: [NSAttributedString.Key.foregroundColor: RED_PLACEHOLDER])
+                attributes: [NSAttributedString.Key.foregroundColor: redPlaceholder])
         } else if textField == emailTextField {
             textField.attributedPlaceholder = NSAttributedString(
                 string: Placeholders.userEmailRequired.rawValue,
-                attributes: [NSAttributedString.Key.foregroundColor: RED_PLACEHOLDER])
+                attributes: [NSAttributedString.Key.foregroundColor: redPlaceholder])
         } else if textField == passwordTextField {
             textField.attributedPlaceholder = NSAttributedString(
                 string: Placeholders.userPasswordRequired.rawValue,
-                attributes: [NSAttributedString.Key.foregroundColor: RED_PLACEHOLDER])
+                attributes: [NSAttributedString.Key.foregroundColor: redPlaceholder])
         }
     }
 
     @IBAction func closeButtonPressed(_ sender: Any) {
         view.endEditing(true)
-        performSegue(withIdentifier: UNWIND_TO_CHANNEL, sender: nil)
+        performSegue(withIdentifier: Segues.unwindToChannel.rawValue, sender: nil)
         UserDataService.instance.logoutUser()
     }
 
     @IBAction func chooseAvatarButtonPressed(_ sender: Any) {
-        performSegue(withIdentifier: TO_AVATAR_PICKER, sender: nil)
+        performSegue(withIdentifier: Segues.toAvatarPicker.rawValue, sender: nil)
     }
 
     @IBAction func generateBackgroundColorButtonPressed(_ sender: Any) {
@@ -163,9 +163,11 @@ class CreateAccountViewController: UIViewController {
                                 self?.spinner.isHidden = true
                                 self?.spinner.stopAnimating()
                                 NotificationCenter.default.post(
-                                    name: NOTIFICATION_USER_DATA_DID_CHANGE,
+                                    name: notificationUserDataDidChange,
                                     object: nil)
-                                self?.performSegue(withIdentifier: UNWIND_TO_CHANNEL, sender: nil)
+                                self?.performSegue(
+                                    withIdentifier: Segues.unwindToChannel.rawValue,
+                                    sender: nil)
                         }
                 }
         }

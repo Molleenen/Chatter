@@ -26,34 +26,34 @@ class AuthenticationService {
 
     var isLoggedIn: Bool {
         get {
-            return defaults.bool(forKey: LOGGED_IN)
+            return defaults.bool(forKey: UserDefaultsKeys.loggedIn.rawValue)
         }
         set {
-            defaults.set(newValue, forKey: LOGGED_IN)
+            defaults.set(newValue, forKey: UserDefaultsKeys.loggedIn.rawValue)
         }
     }
 
     var authenticationToken: String {
         get {
-            guard let token = defaults.value(forKey: TOKEN) as? String else {
+            guard let token = defaults.value(forKey: UserDefaultsKeys.tokenKey.rawValue) as? String else {
                 fatalError("Authentication token for token key not found in user defaults")
             }
             return token
         }
         set {
-            defaults.set(newValue, forKey: TOKEN)
+            defaults.set(newValue, forKey: UserDefaultsKeys.tokenKey.rawValue)
         }
     }
 
     var userEmail: String {
         get {
-            guard let userEmail = defaults.value(forKey: USER_EMAIL) as? String else {
+            guard let userEmail = defaults.value(forKey: UserDefaultsKeys.userEmail.rawValue) as? String else {
                 fatalError("User email not found in user defaults")
             }
             return userEmail
         }
         set {
-            defaults.set(newValue, forKey: USER_EMAIL)
+            defaults.set(newValue, forKey: UserDefaultsKeys.userEmail.rawValue)
         }
     }
 
@@ -72,11 +72,11 @@ class AuthenticationService {
 
         Alamofire
             .request(
-                URL_REGISTER,
+                urlRegister,
                 method: .post,
                 parameters: body,
                 encoding: JSONEncoding.default,
-                headers: HEADER)
+                headers: header)
             .responseString { response in
                 guard response.result.error == nil else {
                     debugPrint(response.result.error as Any)
@@ -102,11 +102,11 @@ class AuthenticationService {
 
         Alamofire
             .request(
-                URL_LOGIN,
+                urlLogin,
                 method: .post,
                 parameters: body,
                 encoding: JSONEncoding.default,
-                headers: HEADER)
+                headers: header)
             .responseJSON { [weak self] response in
                 guard response.result.error == nil else {
                     debugPrint(response.result.error as Any)
@@ -158,11 +158,11 @@ class AuthenticationService {
 
         Alamofire
             .request(
-                URL_USER_ADD,
+                urlUserAdd,
                 method: .post,
                 parameters: body,
                 encoding: JSONEncoding.default,
-                headers: BEARER_HEADER)
+                headers: bearerHeader)
             .responseJSON { [weak self] response in
 
                 guard response.result.error == nil else {
@@ -183,10 +183,10 @@ class AuthenticationService {
 
         Alamofire
             .request(
-                "\(URL_USER_BY_EMAIL)\(userEmail)",
+                "\(urlUserByEmail)\(userEmail)",
                 method: .get, parameters: nil,
                 encoding: JSONEncoding.default,
-                headers: BEARER_HEADER)
+                headers: bearerHeader)
             .responseJSON { [weak self] response in
 
                 guard response.result.error == nil else {

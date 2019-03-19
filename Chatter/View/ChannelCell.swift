@@ -27,11 +27,11 @@ class ChannelCell: UITableViewCell {
     func configureCell(channel: Channel) {
         let name = channel.name
         channelName.text = "#\(name)"
-        channelName.font = UIFont(name: HELVETICA_REGULAR, size: 17)
+        channelName.font = UIFont(name: helveticaRegular, size: 17)
 
         for identifier in MessageService.instance.unreadChannels {
             if identifier == channel.identifier {
-                channelName.font = UIFont(name: HELVETICA_BOLD, size: 22)
+                channelName.font = UIFont(name: helveticaBold, size: 22)
             }
         }
     }
