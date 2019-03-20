@@ -40,7 +40,7 @@ class UserDataService {
             .trimmingCharacters(in: ["[", "]"])
             .replacingOccurrences(of: ",", with: "")
             .split(separator: " ")
-            .compactMap { NumberFormatter().number(from: String($0))?.floatValue }
+            .compactMap { Float($0) }
             .map { CGFloat($0) }
 
         guard colors.count == 4 else {
