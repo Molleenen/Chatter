@@ -300,6 +300,7 @@
                         <viewLayoutGuide key="safeArea" id="u1w-xM-zuY"/>
                     </view>
                     <connections>
+                        <outlet property="addChannelButton" destination="BYX-fA-bYj" id="ayc-Fj-zzb"/>
                         <outlet property="channelTableView" destination="DNO-HU-44U" id="CGC-9i-iar"/>
                         <outlet property="loginButton" destination="V2S-ck-Hrk" id="8QB-pA-7mX"/>
                         <outlet property="userImage" destination="1b4-7m-wHF" id="gir-x0-5J0"/>

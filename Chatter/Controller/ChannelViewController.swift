@@ -8,6 +8,7 @@ import UIKit
 class ChannelViewController: UIViewController {
 
     @IBOutlet weak var channelTableView: UITableView!
+    @IBOutlet weak var addChannelButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var userImage: CircleImage!
 
@@ -35,6 +36,7 @@ class ChannelViewController: UIViewController {
 
     private func setupUserInfo() {
         if AuthenticationService.instance.isLoggedIn {
+            addChannelButton.isHidden = false
             loginButton.setTitle(UserDataService.instance.name, for: .normal)
             userImage.image = UIImage(named: UserDataService.instance.avatarName)
             userImage.backgroundColor =
@@ -44,6 +46,7 @@ class ChannelViewController: UIViewController {
                 channelTableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
             }
         } else {
+            addChannelButton.isHidden = true
             loginButton.setTitle("Login", for: .normal)
             userImage.image = UIImage(named: "menuProfileIcon")
             userImage.backgroundColor = UIColor.clear
