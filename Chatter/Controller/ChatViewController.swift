@@ -199,12 +199,8 @@ class ChatViewController: UIViewController {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(ChatViewController.keyboardDidChange(_:)),
-            name: UIResponder.keyboardDidChangeFrameNotification,
+            name: UIResponder.keyboardWillChangeFrameNotification,
             object: nil)
-    }
-
-    @IBAction func messageEditing(_ sender: Any) {
-
     }
 
     @IBAction func sendMessageButtonPressed(_ sender: Any) {
