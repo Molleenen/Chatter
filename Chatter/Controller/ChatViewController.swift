@@ -204,24 +204,7 @@ class ChatViewController: UIViewController {
     }
 
     @IBAction func messageEditing(_ sender: Any) {
-        guard let channelId = MessageService.instance.channelSelected?.identifier else { return }
-        if messageTextView.text.isEmpty {
-            isTyping = false
-            sendButton.isHidden = true
-            SocketService.instance.socket.emit(
-                Keys.userStoppedTyping.rawValue,
-                UserDataService.instance.name,
-                channelId)
-        } else {
-            if isTyping == false {
-                SocketService.instance.socket.emit(
-                    Keys.userStartedTyping.rawValue,
-                    UserDataService.instance.name,
-                    channelId)
-                sendButton.isHidden = false
-            }
-            isTyping = true
-        }
+
     }
 
     @IBAction func sendMessageButtonPressed(_ sender: Any) {
@@ -304,6 +287,25 @@ extension ChatViewController: UITextViewDelegate {
         guard !MessageService.instance.messages.isEmpty else { return }
         let indexPath = IndexPath(row: MessageService.instance.messages.count - 1, section: 0)
         self.messageTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+
+        guard let channelId = MessageService.instance.channelSelected?.identifier else { return }
+        if messageTextView.text.isEmpty {
+            isTyping = false
+            sendButton.isHidden = true
+            SocketService.instance.socket.emit(
+                Keys.userStoppedTyping.rawValue,
+                UserDataService.instance.name,
+                channelId)
+        } else {
+            if isTyping == false {
+                SocketService.instance.socket.emit(
+                    Keys.userStartedTyping.rawValue,
+                    UserDataService.instance.name,
+                    channelId)
+                sendButton.isHidden = false
+            }
+            isTyping = true
+        }
     }
 }
 
