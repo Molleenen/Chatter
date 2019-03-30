@@ -5,7 +5,7 @@
 
 import Foundation
 
-struct Message {
+struct Message: Equatable {
     private(set) var identifier: String
     private(set) var messageBody: String
     private(set) var timeStamp: String

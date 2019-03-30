@@ -8,12 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		1600EC3D8EFE5B39FB2FB7AD /* Pods_Chatter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0994EDED5508A9A60F60DAA1 /* Pods_Chatter.framework */; };
+		7926AE659D1F7BD539470BA6 /* Pods_ChatterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 647343584BFE241241C19A96 /* Pods_ChatterTests.framework */; };
 		EA05BFAF2216CE7B000C8D0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA05BFAE2216CE7B000C8D0D /* AppDelegate.swift */; };
 		EA05BFB42216CE7B000C8D0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA05BFB22216CE7B000C8D0D /* Main.storyboard */; };
 		EA05BFB62216CE7D000C8D0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA05BFB52216CE7D000C8D0D /* Assets.xcassets */; };
 		EA05BFB92216CE7D000C8D0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA05BFB72216CE7D000C8D0D /* LaunchScreen.storyboard */; };
 		EA08D9D6221730E70062EA3D /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA08D9D5221730E70062EA3D /* AuthenticationService.swift */; };
 		EA08D9D82217558E0062EA3D /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA08D9D72217558E0062EA3D /* RoundedButton.swift */; };
+		EA2B521A224F674C009CFD1E /* ChatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2B5219224F674C009CFD1E /* ChatterTests.swift */; };
+		EA2B5222224F676F009CFD1E /* MessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2B5221224F676F009CFD1E /* MessageTests.swift */; };
+		EA2B5224224F69BF009CFD1E /* ChannelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2B5223224F69BF009CFD1E /* ChannelTests.swift */; };
 		EA2EA9AA2216D14100DD609B /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2EA9A82216D14100DD609B /* SWRevealViewController.m */; };
 		EA2EA9AF2216D33900DD609B /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EA9AE2216D33900DD609B /* ChatViewController.swift */; };
 		EA2EA9B12216D34700DD609B /* ChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EA9B02216D34700DD609B /* ChannelViewController.swift */; };
@@ -39,8 +43,21 @@
 		EAE4E5112225332E00EFDDB1 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE4E5102225332E00EFDDB1 /* MessageCell.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		EA2B521C224F674C009CFD1E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA05BFA32216CE7B000C8D0D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EA05BFAA2216CE7B000C8D0D;
+			remoteInfo = Chatter;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		0994EDED5508A9A60F60DAA1 /* Pods_Chatter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chatter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		647343584BFE241241C19A96 /* Pods_ChatterTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChatterTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		65E3017F44D18DC9EF3BF124 /* Pods-ChatterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatterTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChatterTests/Pods-ChatterTests.release.xcconfig"; sourceTree = "<group>"; };
+		6E858B5DE8F9F30D09CDAD82 /* Pods-ChatterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChatterTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChatterTests/Pods-ChatterTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EA05BFAB2216CE7B000C8D0D /* Chatter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chatter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA05BFAE2216CE7B000C8D0D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA05BFB32216CE7B000C8D0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -49,6 +66,11 @@
 		EA05BFBA2216CE7D000C8D0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA08D9D5221730E70062EA3D /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		EA08D9D72217558E0062EA3D /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		EA2B5217224F674C009CFD1E /* ChatterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChatterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA2B5219224F674C009CFD1E /* ChatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatterTests.swift; sourceTree = "<group>"; };
+		EA2B521B224F674C009CFD1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA2B5221224F676F009CFD1E /* MessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTests.swift; sourceTree = "<group>"; };
+		EA2B5223224F69BF009CFD1E /* ChannelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelTests.swift; sourceTree = "<group>"; };
 		EA2EA9A72216D14000DD609B /* Chatter-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Chatter-Bridging-Header.h"; sourceTree = "<group>"; };
 		EA2EA9A82216D14100DD609B /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		EA2EA9A92216D14100DD609B /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -87,6 +109,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EA2B5214224F674C009CFD1E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7926AE659D1F7BD539470BA6 /* Pods_ChatterTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -95,6 +125,8 @@
 			children = (
 				F163FED5973F8C653553AD75 /* Pods-Chatter.debug.xcconfig */,
 				EEEA2A50D4E6628A592D269D /* Pods-Chatter.release.xcconfig */,
+				6E858B5DE8F9F30D09CDAD82 /* Pods-ChatterTests.debug.xcconfig */,
+				65E3017F44D18DC9EF3BF124 /* Pods-ChatterTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -103,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				0994EDED5508A9A60F60DAA1 /* Pods_Chatter.framework */,
+				647343584BFE241241C19A96 /* Pods_ChatterTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -111,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				EA05BFAD2216CE7B000C8D0D /* Chatter */,
+				EA2B5218224F674C009CFD1E /* ChatterTests */,
 				EA05BFAC2216CE7B000C8D0D /* Products */,
 				6B4E3C9735AA9552677EB58C /* Pods */,
 				B926DD98146EFAA98A9F38B9 /* Frameworks */,
@@ -121,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				EA05BFAB2216CE7B000C8D0D /* Chatter.app */,
+				EA2B5217224F674C009CFD1E /* ChatterTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -153,6 +188,17 @@
 				EAE4E50A2223E9BA00EFDDB1 /* SocketService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		EA2B5218224F674C009CFD1E /* ChatterTests */ = {
+			isa = PBXGroup;
+			children = (
+				EA2B5223224F69BF009CFD1E /* ChannelTests.swift */,
+				EA2B5221224F676F009CFD1E /* MessageTests.swift */,
+				EA2B5219224F674C009CFD1E /* ChatterTests.swift */,
+				EA2B521B224F674C009CFD1E /* Info.plist */,
+			);
+			path = ChatterTests;
 			sourceTree = "<group>";
 		};
 		EA2EA9A62216D12300DD609B /* Supporting Files */ = {
@@ -243,19 +289,42 @@
 			productReference = EA05BFAB2216CE7B000C8D0D /* Chatter.app */;
 			productType = "com.apple.product-type.application";
 		};
+		EA2B5216224F674C009CFD1E /* ChatterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA2B5220224F674C009CFD1E /* Build configuration list for PBXNativeTarget "ChatterTests" */;
+			buildPhases = (
+				156D8BCB17F8EF40B44061AD /* [CP] Check Pods Manifest.lock */,
+				EA2B5213224F674C009CFD1E /* Sources */,
+				EA2B5214224F674C009CFD1E /* Frameworks */,
+				EA2B5215224F674C009CFD1E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EA2B521D224F674C009CFD1E /* PBXTargetDependency */,
+			);
+			name = ChatterTests;
+			productName = ChatterTests;
+			productReference = EA2B5217224F674C009CFD1E /* ChatterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		EA05BFA32216CE7B000C8D0D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1010;
+				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Sebastian Wojciechowski";
 				TargetAttributes = {
 					EA05BFAA2216CE7B000C8D0D = {
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1010;
+					};
+					EA2B5216224F674C009CFD1E = {
+						CreatedOnToolsVersion = 10.2;
+						TestTargetID = EA05BFAA2216CE7B000C8D0D;
 					};
 				};
 			};
@@ -273,6 +342,7 @@
 			projectRoot = "";
 			targets = (
 				EA05BFAA2216CE7B000C8D0D /* Chatter */,
+				EA2B5216224F674C009CFD1E /* ChatterTests */,
 			);
 		};
 /* End PBXProject section */
@@ -290,9 +360,38 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EA2B5215224F674C009CFD1E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		156D8BCB17F8EF40B44061AD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ChatterTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4DE2A21E55FAD2AC6D93BA78 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -394,7 +493,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EA2B5213224F674C009CFD1E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA2B521A224F674C009CFD1E /* ChatterTests.swift in Sources */,
+				EA2B5224224F69BF009CFD1E /* ChannelTests.swift in Sources */,
+				EA2B5222224F676F009CFD1E /* MessageTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EA2B521D224F674C009CFD1E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EA05BFAA2216CE7B000C8D0D /* Chatter */;
+			targetProxy = EA2B521C224F674C009CFD1E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		EA05BFB22216CE7B000C8D0D /* Main.storyboard */ = {
@@ -575,6 +692,50 @@
 			};
 			name = Release;
 		};
+		EA2B521E224F674C009CFD1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E858B5DE8F9F30D09CDAD82 /* Pods-ChatterTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q33M3QAJ9U;
+				INFOPLIST_FILE = ChatterTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sebastianwojciechowski.ChatterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Chatter.app/Chatter";
+			};
+			name = Debug;
+		};
+		EA2B521F224F674C009CFD1E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 65E3017F44D18DC9EF3BF124 /* Pods-ChatterTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q33M3QAJ9U;
+				INFOPLIST_FILE = ChatterTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sebastianwojciechowski.ChatterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Chatter.app/Chatter";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -592,6 +753,15 @@
 			buildConfigurations = (
 				EA05BFBE2216CE7D000C8D0D /* Debug */,
 				EA05BFBF2216CE7D000C8D0D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EA2B5220224F674C009CFD1E /* Build configuration list for PBXNativeTarget "ChatterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA2B521E224F674C009CFD1E /* Debug */,
+				EA2B521F224F674C009CFD1E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
