@@ -15,7 +15,6 @@
 		EA05BFB92216CE7D000C8D0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA05BFB72216CE7D000C8D0D /* LaunchScreen.storyboard */; };
 		EA08D9D6221730E70062EA3D /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA08D9D5221730E70062EA3D /* AuthenticationService.swift */; };
 		EA08D9D82217558E0062EA3D /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA08D9D72217558E0062EA3D /* RoundedButton.swift */; };
-		EA2B521A224F674C009CFD1E /* ChatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2B5219224F674C009CFD1E /* ChatterTests.swift */; };
 		EA2B5222224F676F009CFD1E /* MessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2B5221224F676F009CFD1E /* MessageTests.swift */; };
 		EA2B5224224F69BF009CFD1E /* ChannelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2B5223224F69BF009CFD1E /* ChannelTests.swift */; };
 		EA2EA9AA2216D14100DD609B /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2EA9A82216D14100DD609B /* SWRevealViewController.m */; };
@@ -67,7 +66,6 @@
 		EA08D9D5221730E70062EA3D /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		EA08D9D72217558E0062EA3D /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		EA2B5217224F674C009CFD1E /* ChatterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChatterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EA2B5219224F674C009CFD1E /* ChatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatterTests.swift; sourceTree = "<group>"; };
 		EA2B521B224F674C009CFD1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA2B5221224F676F009CFD1E /* MessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTests.swift; sourceTree = "<group>"; };
 		EA2B5223224F69BF009CFD1E /* ChannelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelTests.swift; sourceTree = "<group>"; };
@@ -195,7 +193,6 @@
 			children = (
 				EA2B5223224F69BF009CFD1E /* ChannelTests.swift */,
 				EA2B5221224F676F009CFD1E /* MessageTests.swift */,
-				EA2B5219224F674C009CFD1E /* ChatterTests.swift */,
 				EA2B521B224F674C009CFD1E /* Info.plist */,
 			);
 			path = ChatterTests;
@@ -497,7 +494,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA2B521A224F674C009CFD1E /* ChatterTests.swift in Sources */,
 				EA2B5224224F69BF009CFD1E /* ChannelTests.swift in Sources */,
 				EA2B5222224F676F009CFD1E /* MessageTests.swift in Sources */,
 			);
