@@ -25,6 +25,7 @@
 		EA417A5322202380003485A7 /* MessageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA417A5222202380003485A7 /* MessageService.swift */; };
 		EA417A55222023AE003485A7 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA417A54222023AE003485A7 /* Channel.swift */; };
 		EA417A572220292F003485A7 /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA417A562220292F003485A7 /* ChannelCell.swift */; };
+		EA6420BC2250AF1C00F50BA5 /* SocketTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6420BB2250AF1C00F50BA5 /* SocketTests.swift */; };
 		EABA634D221AC71C00111D66 /* UserDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABA634C221AC71C00111D66 /* UserDataService.swift */; };
 		EABA634F221AD34900111D66 /* AvatarPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABA634E221AD34900111D66 /* AvatarPickerViewController.swift */; };
 		EABA6351221AD4AD00111D66 /* AvatarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABA6350221AD4AD00111D66 /* AvatarCell.swift */; };
@@ -38,6 +39,16 @@
 		EAE4E50D2223FCE200EFDDB1 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE4E50C2223FCE200EFDDB1 /* Message.swift */; };
 		EAE4E5112225332E00EFDDB1 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE4E5102225332E00EFDDB1 /* MessageCell.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EA6420B62250AF0B00F50BA5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA05BFA32216CE7B000C8D0D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EA05BFAA2216CE7B000C8D0D;
+			remoteInfo = Chatter;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0994EDED5508A9A60F60DAA1 /* Pods_Chatter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chatter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,6 +73,9 @@
 		EA417A5222202380003485A7 /* MessageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageService.swift; sourceTree = "<group>"; };
 		EA417A54222023AE003485A7 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		EA417A562220292F003485A7 /* ChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
+		EA6420B12250AF0B00F50BA5 /* ChatterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChatterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA6420B52250AF0B00F50BA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA6420BB2250AF1C00F50BA5 /* SocketTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketTests.swift; sourceTree = "<group>"; };
 		EABA634C221AC71C00111D66 /* UserDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataService.swift; sourceTree = "<group>"; };
 		EABA634E221AD34900111D66 /* AvatarPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarPickerViewController.swift; sourceTree = "<group>"; };
 		EABA6350221AD4AD00111D66 /* AvatarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCell.swift; sourceTree = "<group>"; };
@@ -84,6 +98,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				1600EC3D8EFE5B39FB2FB7AD /* Pods_Chatter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA6420AE2250AF0B00F50BA5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				EA05BFAD2216CE7B000C8D0D /* Chatter */,
+				EA6420B22250AF0B00F50BA5 /* ChatterTests */,
 				EA05BFAC2216CE7B000C8D0D /* Products */,
 				6B4E3C9735AA9552677EB58C /* Pods */,
 				B926DD98146EFAA98A9F38B9 /* Frameworks */,
@@ -121,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				EA05BFAB2216CE7B000C8D0D /* Chatter.app */,
+				EA6420B12250AF0B00F50BA5 /* ChatterTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -211,6 +234,15 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		EA6420B22250AF0B00F50BA5 /* ChatterTests */ = {
+			isa = PBXGroup;
+			children = (
+				EA6420BB2250AF1C00F50BA5 /* SocketTests.swift */,
+				EA6420B52250AF0B00F50BA5 /* Info.plist */,
+			);
+			path = ChatterTests;
+			sourceTree = "<group>";
+		};
 		EABA6358221AFEAC00111D66 /* XIBs */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,19 +275,41 @@
 			productReference = EA05BFAB2216CE7B000C8D0D /* Chatter.app */;
 			productType = "com.apple.product-type.application";
 		};
+		EA6420B02250AF0B00F50BA5 /* ChatterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA6420B82250AF0B00F50BA5 /* Build configuration list for PBXNativeTarget "ChatterTests" */;
+			buildPhases = (
+				EA6420AD2250AF0B00F50BA5 /* Sources */,
+				EA6420AE2250AF0B00F50BA5 /* Frameworks */,
+				EA6420AF2250AF0B00F50BA5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EA6420B72250AF0B00F50BA5 /* PBXTargetDependency */,
+			);
+			name = ChatterTests;
+			productName = ChatterTests;
+			productReference = EA6420B12250AF0B00F50BA5 /* ChatterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		EA05BFA32216CE7B000C8D0D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1010;
+				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Sebastian Wojciechowski";
 				TargetAttributes = {
 					EA05BFAA2216CE7B000C8D0D = {
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1010;
+					};
+					EA6420B02250AF0B00F50BA5 = {
+						CreatedOnToolsVersion = 10.2;
+						TestTargetID = EA05BFAA2216CE7B000C8D0D;
 					};
 				};
 			};
@@ -273,6 +327,7 @@
 			projectRoot = "";
 			targets = (
 				EA05BFAA2216CE7B000C8D0D /* Chatter */,
+				EA6420B02250AF0B00F50BA5 /* ChatterTests */,
 			);
 		};
 /* End PBXProject section */
@@ -287,6 +342,13 @@
 				EA05BFB62216CE7D000C8D0D /* Assets.xcassets in Resources */,
 				EABA6357221AFE8B00111D66 /* ProfileViewController.xib in Resources */,
 				EA05BFB42216CE7B000C8D0D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA6420AF2250AF0B00F50BA5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,7 +456,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EA6420AD2250AF0B00F50BA5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA6420BC2250AF1C00F50BA5 /* SocketTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EA6420B72250AF0B00F50BA5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EA05BFAA2216CE7B000C8D0D /* Chatter */;
+			targetProxy = EA6420B62250AF0B00F50BA5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		EA05BFB22216CE7B000C8D0D /* Main.storyboard */ = {
@@ -575,6 +653,48 @@
 			};
 			name = Release;
 		};
+		EA6420B92250AF0B00F50BA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q33M3QAJ9U;
+				INFOPLIST_FILE = ChatterTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sebastianwojciechowski.ChatterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Chatter.app/Chatter";
+			};
+			name = Debug;
+		};
+		EA6420BA2250AF0B00F50BA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q33M3QAJ9U;
+				INFOPLIST_FILE = ChatterTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sebastianwojciechowski.ChatterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Chatter.app/Chatter";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -592,6 +712,15 @@
 			buildConfigurations = (
 				EA05BFBE2216CE7D000C8D0D /* Debug */,
 				EA05BFBF2216CE7D000C8D0D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EA6420B82250AF0B00F50BA5 /* Build configuration list for PBXNativeTarget "ChatterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA6420B92250AF0B00F50BA5 /* Debug */,
+				EA6420BA2250AF0B00F50BA5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
