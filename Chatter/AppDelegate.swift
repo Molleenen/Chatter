@@ -14,6 +14,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
+//        if CommandLine.arguments.contains("--uitesting") {
+//            resetState()
+//        }
         return true
     }
 
