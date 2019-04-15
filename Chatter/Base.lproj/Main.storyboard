@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -72,7 +72,7 @@
                                     <action selector="sendMessageButtonPressed:" destination="eIr-hz-6Th" eventType="touchUpInside" id="LlY-01-ym8"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mZu-m9-RDw">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mZu-m9-RDw">
                                 <rect key="frame" x="0.0" y="75" width="375" height="515"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -161,6 +161,7 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <accessibility key="accessibilityConfiguration" identifier="chatView"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="TWP-XU-x5N" secondAttribute="trailing" constant="8" id="2eR-VB-HSV"/>
                             <constraint firstItem="5Ry-4f-VmY" firstAttribute="bottom" secondItem="cOt-pl-0Lg" secondAttribute="bottom" constant="8" placeholder="YES" id="5bs-bz-zla"/>
@@ -281,6 +282,7 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <accessibility key="accessibilityConfiguration" identifier="channelView"/>
                         <constraints>
                             <constraint firstItem="u1w-xM-zuY" firstAttribute="bottom" secondItem="1b4-7m-wHF" secondAttribute="bottom" constant="20" id="1E2-LK-btj"/>
                             <constraint firstItem="V2S-ck-Hrk" firstAttribute="centerY" secondItem="1b4-7m-wHF" secondAttribute="centerY" id="6Sz-bw-DzH"/>
@@ -422,6 +424,7 @@
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <accessibility key="accessibilityConfiguration" identifier="loginView"/>
                         <constraints>
                             <constraint firstItem="v0v-cR-sTD" firstAttribute="centerY" secondItem="epv-2t-X7W" secondAttribute="centerY" constant="-100" id="22r-kl-GUJ"/>
                             <constraint firstItem="Z1A-44-74r" firstAttribute="top" secondItem="Ava-pL-Q7E" secondAttribute="top" constant="8" id="Ejb-b2-mqw"/>
@@ -585,6 +588,7 @@
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <accessibility key="accessibilityConfiguration" identifier="registerView"/>
                         <constraints>
                             <constraint firstItem="r3B-Qo-P9o" firstAttribute="top" secondItem="Ifl-5f-Dby" secondAttribute="bottom" id="5fX-kt-L6N"/>
                             <constraint firstItem="6LX-th-xxr" firstAttribute="top" secondItem="WMc-BG-Eo9" secondAttribute="top" constant="60" id="BPx-y6-pei"/>
@@ -686,6 +690,7 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <accessibility key="accessibilityConfiguration" identifier="avatarView"/>
                         <constraints>
                             <constraint firstItem="UYL-ms-vfF" firstAttribute="leading" secondItem="3MJ-CE-a3R" secondAttribute="leading" id="7Ws-sQ-In4"/>
                             <constraint firstItem="yta-Fd-l8Q" firstAttribute="leading" secondItem="3MJ-CE-a3R" secondAttribute="leading" constant="16" id="AWJ-tt-RQA"/>

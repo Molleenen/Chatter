@@ -22,5 +22,20 @@ class MessageCell: UITableViewCell {
         userImage.image = UIImage(named: message.userAvatar)
         userImage.backgroundColor =
             UserDataService.instance.returnUIColor(components: message.userAvatarColor)
+        timeStampLabel.text = formatDate(stringDate: message.timeStamp)
+    }
+
+    private func formatDate(stringDate: String) -> String {
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "E, d MMM yyyy HH:mm"
+
+        if let date = dateFormatterGet.date(from: stringDate) {
+            return dateFormatterPrint.string(from: date)
+        } else {
+            return stringDate
+        }
     }
 }
