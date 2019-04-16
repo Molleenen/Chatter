@@ -67,7 +67,6 @@ class AuthenticationService {
         password: String,
         completion: @escaping CompletionHandler
     ) {
-
         let lowerCaseEmail = email.lowercased()
 
         let body: [String: Any] = [
@@ -84,7 +83,9 @@ class AuthenticationService {
                 headers: header)
             .responseString { response in
                 guard response.result.error == nil else {
-                    debugPrint(response.result.error as Any)
+                    if let error = response.result.error {
+                        debugPrint("\(error.localizedDescription)")
+                    }
                     completion(false)
                     return
                 }
@@ -97,7 +98,6 @@ class AuthenticationService {
         password: String,
         completion: @escaping CompletionHandler
     ) {
-
         let lowerCaseEmail = email.lowercased()
 
         let body: [String: Any] = [
@@ -114,9 +114,7 @@ class AuthenticationService {
                 headers: header)
             .responseJSON { [weak self] response in
 
-                guard
-                    let result = self?.process(response: response, ofType: ResponseType.authenticatonData)
-                else {
+                guard let result = self?.process(response: response, ofType: .authenticatonData) else {
                     completion(false)
                     return
                 }
@@ -131,7 +129,6 @@ class AuthenticationService {
         avatarColor: String,
         completion: @escaping CompletionHandler
     ) {
-
         let lowerCaseEmail = email.lowercased()
 
         let body: [String: Any] = [
@@ -150,9 +147,7 @@ class AuthenticationService {
                 headers: bearerHeader)
             .responseJSON { [weak self] response in
 
-                guard
-                    let result = self?.process(response: response, ofType: ResponseType.userData)
-                else {
+                guard let result = self?.process(response: response, ofType: .userData) else {
                     completion(false)
                     return
                 }
@@ -161,7 +156,6 @@ class AuthenticationService {
     }
 
     func findUserByEmail(completion: @escaping CompletionHandler) {
-
         Alamofire
             .request(
                 "\(urlUserByEmail)\(userEmail)",
@@ -170,9 +164,7 @@ class AuthenticationService {
                 headers: bearerHeader)
             .responseJSON { [weak self] response in
 
-                guard
-                    let result = self?.process(response: response, ofType: ResponseType.userData)
-                else {
+                guard let result = self?.process(response: response, ofType: .userData) else {
                     completion(false)
                     return
                 }
@@ -184,11 +176,10 @@ class AuthenticationService {
         guard
             let email = json[Keys.user.rawValue].string,
             let token = json[Keys.authenticationToken.rawValue].string
-            else {
-                return false
-        }
-        self.userEmail = email
-        self.authenticationToken = token
+        else { return false }
+
+        userEmail = email
+        authenticationToken = token
         return true
     }
 
@@ -199,18 +190,14 @@ class AuthenticationService {
             let avatarName = json[Keys.userAvatarName.rawValue].string,
             let email = json[Keys.userEmail.rawValue].string,
             let name = json[Keys.userName.rawValue].string
-        else {
-            return false
-        }
+        else { return false }
 
         UserDataService
             .instance
             .setUserData(
                 userId: userId,
-                avatarColor:
-                avatarColor,
-                avatarName:
-                avatarName,
+                avatarColor: avatarColor,
+                avatarName: avatarName,
                 email: email,
                 name: name)
         return true
@@ -219,21 +206,22 @@ class AuthenticationService {
     private func process(
         response: DataResponse<Any>,
         ofType responseType: ResponseType
-        ) -> Bool {
-
+    ) -> Bool {
         guard response.result.error == nil else {
-            debugPrint(response.result.error as Any)
+            if let error = response.result.error {
+                debugPrint("\(error.localizedDescription)")
+            }
             return false
         }
-
         guard let data = response.data else { return false }
 
         do {
             let json = try JSON(data: data)
+
             switch responseType {
-            case ResponseType.authenticatonData:
+            case .authenticatonData:
                 return setAuthenticationDataFrom(json: json)
-            case ResponseType.userData:
+            case .userData:
                 return setUserDataFrom(json: json)
             }
         } catch {

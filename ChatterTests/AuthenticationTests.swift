@@ -24,10 +24,38 @@ class AuthenticationTests: XCTestCase {
         authenticationService = AuthenticationService()
 
         emptyJson = "{ }"
-        userDataCorrectJson = "{ \"_id\": \"identifier\", \"avatarColor\": \"avatarColor\", \"avatarName\": \"avatarName\", \"email\": \"email\", \"name\": \"name\" }"
-        userDataCorruptedJson = "{ \"_id\": \"identifier\", \"avatarColor\": \"avatarColor\", \"avatarName\": \"avatarName\", \"email\": \"email\" }"
-        authenticationCorrectJson = "{ \"user\": \"mail\", \"token\": \"token\" }"
-        authenticationCorruptedJson = "{ \"user\": \"mail\" }"
+
+        userDataCorrectJson = """
+        {
+            "_id": "identifier",
+            "avatarColor": "avatarColor",
+            "avatarName": "avatarName",
+            "email": "email",
+            "name": "name"
+        }
+        """
+
+        userDataCorruptedJson = """
+        {
+            "_id": "identifier",
+            "avatarColor": "avatarColor",
+            "avatarName": "avatarName",
+            "email": "email"
+        }
+        """
+
+        authenticationCorrectJson = """
+        {
+            "user": "mail",
+            "token": "token"
+        }
+        """
+
+        authenticationCorruptedJson = """
+        {
+            "user": "mail"
+        }
+        """
 
         expectedMail = "mail"
         expectedToken = "token"
@@ -73,5 +101,4 @@ class AuthenticationTests: XCTestCase {
         let json = JSON(parseJSON: emptyJson)
         XCTAssertFalse(authenticationService.setUserDataFrom(json: json))
     }
-
 }
