@@ -19,18 +19,58 @@ class SocketTests: XCTestCase {
 
     override func setUp() {
         socketService = SocketService()
-        expectedMessage = Message(identifier: "identifier", messageBody: "messageBody", timeStamp: "timeStamp", channelId: "channelId", userName: "userName", userAvatar: "userAvatar", userAvatarColor: "userAvatarColor")
-        expectedChannel = Channel(identifier: "identifier", name: "name", description: "description")
-        correctMessageData = ["messageBody", "something", "channelId", "userName", "userAvatar", "userAvatarColor", "identifier", "timeStamp"]
-        corruptedMessageData = ["messageBody", "something", "channelId", "userName", "userAvatar", "userAvatarColor"]
-        correctChannelData = ["name", "description", "identifier"]
-        corruptedChannelData = ["name", "description"]
+
+        expectedMessage = Message(
+            identifier: "identifier",
+            messageBody: "messageBody",
+            timeStamp: "timeStamp",
+            channelId: "channelId",
+            userName: "userName",
+            userAvatar: "userAvatar",
+            userAvatarColor: "userAvatarColor")
+
+        expectedChannel = Channel(
+            identifier: "identifier",
+            name: "name",
+            description: "description")
+
+        correctMessageData = [
+            "messageBody",
+            "something",
+            "channelId",
+            "userName",
+            "userAvatar",
+            "userAvatarColor",
+            "identifier",
+            "timeStamp"
+        ]
+
+        corruptedMessageData = [
+            "messageBody",
+            "something",
+            "channelId",
+            "userName",
+            "userAvatar",
+            "userAvatarColor"
+        ]
+
+        correctChannelData = [
+            "name",
+            "description",
+            "identifier"
+        ]
+
+        corruptedChannelData = [
+            "name",
+            "description"
+        ]
+
         emptyData = []
     }
 
     func testCreateMessageFromCorrectData() {
         guard let result = socketService.createMessageFrom(data: correctMessageData) else {
-            print("Error while unwrapping message from correct data")
+            XCTFail("Error while unwrapping message from correct data")
             return
         }
         XCTAssertEqual(result, expectedMessage)
@@ -46,7 +86,7 @@ class SocketTests: XCTestCase {
 
     func testCreateChannelFromCorrectData() {
         guard let result = socketService.createChannelFrom(data: correctChannelData) else {
-            print("Error while unwrapping message from correct data")
+            XCTFail("Error while unwrapping message from correct data")
             return
         }
         XCTAssertEqual(result, expectedChannel)

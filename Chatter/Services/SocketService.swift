@@ -29,9 +29,8 @@ class SocketService: NSObject {
         socket.disconnect()
     }
 
-    func addChannel(channelName: String, channelDescription: String, completion: CompletionHandler) {
+    func addChannel(channelName: String, channelDescription: String) {
         socket.emit(SocketKeys.newChannel.rawValue, channelName, channelDescription)
-        completion(true)
     }
 
     func getChannel(completion: @escaping CompletionHandler) {
@@ -58,30 +57,22 @@ class SocketService: NSObject {
 
     func getChatMessage(_ completionHandler: @escaping (Message) -> Void) {
         socket.on(SocketKeys.messageCreated.rawValue) { [weak self] dataArray, _ in
-
-            guard let newMessage = self?.createMessageFrom(data: dataArray) else {
-                return
-            }
+            guard let newMessage = self?.createMessageFrom(data: dataArray) else { return }
             completionHandler(newMessage)
         }
     }
 
     func getTypingUsers(_ completionHandler: @escaping ([String: String]) -> Void) {
         socket.on(SocketKeys.userTypingUpdate.rawValue) { dataArray, _ in
-            guard !dataArray.isEmpty else {
-                return
-            }
-            guard let typingUsers = dataArray[0] as? [String: String] else {
-                return
-            }
+            guard !dataArray.isEmpty else { return }
+            guard let typingUsers = dataArray[0] as? [String: String] else { return }
             completionHandler(typingUsers)
         }
     }
 
     func appendNewChannelFrom(data: [Any]) -> Bool {
-        guard let newChannel = createChannelFrom(data: data) else {
-            return false
-        }
+        guard let newChannel = createChannelFrom(data: data) else { return false }
+
         MessageService.instance.channels.append(newChannel)
         return true
     }
@@ -92,11 +83,12 @@ class SocketService: NSObject {
             let channelName = data[0] as? String,
             let channelDescription = data[1] as? String,
             let channelId = data[2] as? String
-        else {
-            return nil
-        }
+        else { return nil }
 
-        return Channel(identifier: channelId, name: channelName, description: channelDescription)
+        return Channel(
+            identifier: channelId,
+            name: channelName,
+            description: channelDescription)
     }
 
     func createMessageFrom(data: [Any]) -> Message? {
@@ -109,9 +101,7 @@ class SocketService: NSObject {
             let userAvatarColor = data[5] as? String,
             let messageId = data[6] as? String,
             let timeStamp = data[7] as? String
-        else {
-            return nil
-        }
+        else { return nil }
 
         return Message(
             identifier: messageId,

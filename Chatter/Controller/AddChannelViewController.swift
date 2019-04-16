@@ -72,11 +72,10 @@ class AddChannelViewController: UIViewController {
             .instance
             .addChannel(
                 channelName: channelName,
-                channelDescription: channelDescription) { success in
-                    guard success else { return }
-                    view.endEditing(true)
-                    dismiss(animated: true, completion: nil)
-        }
+                channelDescription: channelDescription)
+
+        view.endEditing(true)
+        dismiss(animated: true, completion: nil)
     }
 }
 
