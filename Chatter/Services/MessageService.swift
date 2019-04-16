@@ -39,10 +39,7 @@ class MessageService {
         channels.removeAll()
     }
 
-    func findAllMessagesForChannel(
-        channelId: String,
-        completion: @escaping CompletionHandler
-        ) {
+    func findAllMessagesForChannel(channelId: String, completion: @escaping CompletionHandler) {
         Alamofire
             .request(
                 "\(urlGetMessages)\(channelId)",
@@ -52,19 +49,15 @@ class MessageService {
                 headers: bearerHeader)
             .responseJSON { [weak self] response in
 
-                self?.processMessagesResponse(response: response, completion: { success in
-                    guard success else {
-                        completion(false)
-                        return
-                    }
-                    completion(true)
-                })
-
+                guard let result = self?.processMessagesResponse(response: response) else {
+                    completion(false)
+                    return
+                }
+                completion(result)
         }
     }
 
     func findAllChannels(completion: @escaping CompletionHandler) {
-
         Alamofire
             .request(
                 urlGetChannels,
@@ -74,92 +67,57 @@ class MessageService {
                 headers: bearerHeader)
             .responseJSON { [weak self] response in
 
-                self?.processChannelsResponse(response: response
-                    , completion: { success in
-                        guard success else {
-                            completion(false)
-                            return
-                        }
-                        completion(true)
-                })
-        }
-    }
-
-    private func processChannelsResponse(response: DataResponse<Any>, completion: @escaping CompletionHandler) {
-
-        guard response.result.error == nil else {
-            debugPrint(response.result.error as Any)
-            completion(false)
-            return
-        }
-        guard let data = response.data else {
-            completion(false)
-            return
-        }
-
-        do {
-            guard let jsonArray = try JSON(data: data).array else {
-                completion(false)
-                return
-            }
-
-            self.channelsFrom(jsonArray: jsonArray, completion: { success in
-                guard success else {
+                guard let result = self?.processChannelsResponse(response: response) else {
                     completion(false)
                     return
                 }
-            })
+                completion(result)
+        }
+    }
 
-            NotificationCenter.default.post(name: notificationChannelsLoaded, object: nil)
-            completion(true)
+    private func processChannelsResponse(response: DataResponse<Any>) -> Bool {
+        guard response.result.error == nil else {
+            if let error = response.result.error {
+                debugPrint("\(error.localizedDescription)")
+            }
+            return false
+        }
+        guard let data = response.data else { return false }
+
+        do {
+            guard let jsonArray = try JSON(data: data).array else { return false }
+
+            channels = createChannelsFrom(jsonArray: jsonArray)
+            NotificationCenter.default.post(name: .channelsLoaded, object: nil)
+            return true
         } catch {
             print("Error getting channels JSON from data")
-            completion(false)
+            return false
         }
     }
 
-    private func processMessagesResponse(response: DataResponse<Any>, completion: @escaping CompletionHandler) {
+    private func processMessagesResponse(response: DataResponse<Any>) -> Bool {
         guard response.result.error == nil else {
-            debugPrint(response.result.error as Any)
-            completion(false)
-            return
+            if let error = response.result.error {
+                debugPrint("\(error.localizedDescription)")
+            }
+            return false
         }
-
-        self.clearMessages()
-
-        guard let data = response.data else {
-            completion(false)
-            return
-        }
+        guard let data = response.data else { return false }
 
         do {
-            guard let jsonArray = try JSON(data: data).array else {
-                completion(false)
-                return
-            }
+            guard let jsonArray = try JSON(data: data).array else { return false }
 
-            self.messagesFrom(jsonArray: jsonArray, completion: { (success) in
-                guard success else {
-                    completion(false)
-                    return
-                }
-            })
-
-            completion(true)
+            messages = createMessagesFrom(jsonArray: jsonArray)
+            return true
         } catch {
             print("Error getting JSON from data")
-            completion(false)
+            return false
         }
     }
 
-    private func channelsFrom(jsonArray: [JSON], completion: @escaping CompletionHandler) {
-        channels = createChannelsFrom(jsonArray: jsonArray)
-        completion(true)
-    }
-
-    private func messagesFrom(jsonArray: [JSON], completion: @escaping CompletionHandler) {
-        messages = createMessagesFrom(jsonArray: jsonArray)
-        completion(true)
+    internal func createChannelsFrom(jsonArray: [JSON]) -> [Channel] {
+        return jsonArray.compactMap { createChannelFrom(jsonItem: $0) }
     }
 
     internal func createChannelFrom(jsonItem: JSON) -> Channel? {
@@ -167,16 +125,14 @@ class MessageService {
             let channelId = jsonItem[Keys.identifier.rawValue].string,
             let name = jsonItem[Keys.channelName.rawValue].string,
             let description = jsonItem[Keys.channelDescription.rawValue].string
-        else {
-            return nil
-        }
+        else { return nil }
 
         let channel = Channel(identifier: channelId, name: name, description: description)
         return channel
     }
 
-    internal func createChannelsFrom(jsonArray: [JSON]) -> [Channel] {
-        return jsonArray.compactMap { createChannelFrom(jsonItem: $0) }
+    internal func createMessagesFrom(jsonArray: [JSON]) -> [Message] {
+        return jsonArray.compactMap { createMessageFrom(jsonItem: $0) }
     }
 
     internal func createMessageFrom(jsonItem: JSON) -> Message? {
@@ -188,9 +144,7 @@ class MessageService {
             let userName = jsonItem[Keys.userName.rawValue].string,
             let userAvatar = jsonItem[Keys.userAvatar.rawValue].string,
             let userAvatarColor = jsonItem[Keys.userAvatarColor.rawValue].string
-            else {
-                return nil
-        }
+        else { return nil }
 
         let message = Message(
             identifier: messageId,
@@ -202,9 +156,5 @@ class MessageService {
             userAvatarColor: userAvatarColor)
 
         return message
-    }
-
-    internal func createMessagesFrom(jsonArray: [JSON]) -> [Message] {
-        return jsonArray.compactMap { createMessageFrom(jsonItem: $0) }
     }
 }

@@ -163,7 +163,7 @@ class CreateAccountViewController: UIViewController {
                                 self?.spinner.isHidden = true
                                 self?.spinner.stopAnimating()
                                 NotificationCenter.default.post(
-                                    name: notificationUserDataDidChange,
+                                    name: .userDataDidChange,
                                     object: nil)
                                 self?.performSegue(
                                     withIdentifier: Segues.unwindToChannel.rawValue,

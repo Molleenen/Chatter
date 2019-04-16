@@ -98,7 +98,7 @@ class LoginViewController: UIViewController {
 
                 self?.spinner.isHidden = true
                 self?.spinner.stopAnimating()
-                NotificationCenter.default.post(name: notificationUserDataDidChange, object: nil)
+                NotificationCenter.default.post(name: .userDataDidChange, object: nil)
                 self?.dismiss(animated: true, completion: nil)
             })
         }

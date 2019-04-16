@@ -28,6 +28,7 @@
 		EA417A5322202380003485A7 /* MessageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA417A5222202380003485A7 /* MessageService.swift */; };
 		EA417A55222023AE003485A7 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA417A54222023AE003485A7 /* Channel.swift */; };
 		EA417A572220292F003485A7 /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA417A562220292F003485A7 /* ChannelCell.swift */; };
+		EA4C3A1C2265F045002FA55A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4C3A1B2265F045002FA55A /* Extensions.swift */; };
 		EABA634D221AC71C00111D66 /* UserDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABA634C221AC71C00111D66 /* UserDataService.swift */; };
 		EABA634F221AD34900111D66 /* AvatarPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABA634E221AD34900111D66 /* AvatarPickerViewController.swift */; };
 		EABA6351221AD4AD00111D66 /* AvatarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABA6350221AD4AD00111D66 /* AvatarCell.swift */; };
@@ -82,6 +83,7 @@
 		EA417A5222202380003485A7 /* MessageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageService.swift; sourceTree = "<group>"; };
 		EA417A54222023AE003485A7 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		EA417A562220292F003485A7 /* ChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
+		EA4C3A1B2265F045002FA55A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		EABA634C221AC71C00111D66 /* UserDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataService.swift; sourceTree = "<group>"; };
 		EABA634E221AD34900111D66 /* AvatarPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarPickerViewController.swift; sourceTree = "<group>"; };
 		EABA6350221AD4AD00111D66 /* AvatarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCell.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				EA2EA9B52216E02200DD609B /* Constants.swift */,
+				EA4C3A1B2265F045002FA55A /* Extensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -275,7 +278,7 @@
 				EA05BFA82216CE7B000C8D0D /* Frameworks */,
 				EA05BFA92216CE7B000C8D0D /* Resources */,
 				F8F445AD526C5F781AF21163 /* [CP] Embed Pods Frameworks */,
-				EA2B5BC0224134F900B58E5B /* ShellScript */,
+				EA2B5BC0224134F900B58E5B /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -411,7 +414,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EA2B5BC0224134F900B58E5B /* ShellScript */ = {
+		EA2B5BC0224134F900B58E5B /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -420,6 +423,7 @@
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -483,6 +487,7 @@
 				EA2EA9BC2216EF2A00DD609B /* CreateAccountViewController.swift in Sources */,
 				EAE4E5082220368A00EFDDB1 /* AddChannelViewController.swift in Sources */,
 				EABA6351221AD4AD00111D66 /* AvatarCell.swift in Sources */,
+				EA4C3A1C2265F045002FA55A /* Extensions.swift in Sources */,
 				EA2EA9B12216D34700DD609B /* ChannelViewController.swift in Sources */,
 				EABA6356221AFE8B00111D66 /* ProfileViewController.swift in Sources */,
 				EA2EA9AA2216D14100DD609B /* SWRevealViewController.m in Sources */,
@@ -587,6 +592,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -641,6 +647,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -662,7 +669,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Chatter/Supporting Files/Chatter-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -683,7 +690,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.sebastianwojciechowski.Chatter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Chatter/Supporting Files/Chatter-Bridging-Header.h";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
