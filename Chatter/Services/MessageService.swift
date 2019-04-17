@@ -76,10 +76,8 @@ class MessageService {
     }
 
     private func processChannelsResponse(response: DataResponse<Any>) -> Bool {
-        guard response.result.error == nil else {
-            if let error = response.result.error {
-                debugPrint("\(error.localizedDescription)")
-            }
+        if let error = response.result.error {
+            debugPrint("\(error.localizedDescription)")
             return false
         }
         guard let data = response.data else { return false }
@@ -97,10 +95,8 @@ class MessageService {
     }
 
     private func processMessagesResponse(response: DataResponse<Any>) -> Bool {
-        guard response.result.error == nil else {
-            if let error = response.result.error {
-                debugPrint("\(error.localizedDescription)")
-            }
+        if let error = response.result.error {
+            debugPrint("\(error.localizedDescription)")
             return false
         }
         guard let data = response.data else { return false }
