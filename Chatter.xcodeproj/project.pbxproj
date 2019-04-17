@@ -30,6 +30,7 @@
 		EA417A572220292F003485A7 /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA417A562220292F003485A7 /* ChannelCell.swift */; };
 		EA4C3A1C2265F045002FA55A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4C3A1B2265F045002FA55A /* Extensions.swift */; };
 		EA4C3A1E22679A97002FA55A /* AuthenticationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4C3A1D22679A97002FA55A /* AuthenticationTests.swift */; };
+		EA4C3A2022679D10002FA55A /* SocketTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4C3A1F22679D10002FA55A /* SocketTests.swift */; };
 		EABA634D221AC71C00111D66 /* UserDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABA634C221AC71C00111D66 /* UserDataService.swift */; };
 		EABA634F221AD34900111D66 /* AvatarPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABA634E221AD34900111D66 /* AvatarPickerViewController.swift */; };
 		EABA6351221AD4AD00111D66 /* AvatarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABA6350221AD4AD00111D66 /* AvatarCell.swift */; };
@@ -86,6 +87,7 @@
 		EA417A562220292F003485A7 /* ChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
 		EA4C3A1B2265F045002FA55A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		EA4C3A1D22679A97002FA55A /* AuthenticationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationTests.swift; sourceTree = "<group>"; };
+		EA4C3A1F22679D10002FA55A /* SocketTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketTests.swift; sourceTree = "<group>"; };
 		EABA634C221AC71C00111D66 /* UserDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataService.swift; sourceTree = "<group>"; };
 		EABA634E221AD34900111D66 /* AvatarPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarPickerViewController.swift; sourceTree = "<group>"; };
 		EABA6350221AD4AD00111D66 /* AvatarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCell.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 		EA2B5218224F674C009CFD1E /* ChatterTests */ = {
 			isa = PBXGroup;
 			children = (
+				EA4C3A1F22679D10002FA55A /* SocketTests.swift */,
 				EA4C3A1D22679A97002FA55A /* AuthenticationTests.swift */,
 				EA2B5223224F69BF009CFD1E /* ChannelTests.swift */,
 				EA2B5221224F676F009CFD1E /* MessageTests.swift */,
@@ -502,6 +505,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA4C3A2022679D10002FA55A /* SocketTests.swift in Sources */,
 				EA2B5224224F69BF009CFD1E /* ChannelTests.swift in Sources */,
 				EA4C3A1E22679A97002FA55A /* AuthenticationTests.swift in Sources */,
 				EA2B5222224F676F009CFD1E /* MessageTests.swift in Sources */,
