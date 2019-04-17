@@ -42,7 +42,7 @@ class ProfileViewController: UIViewController {
 
     @IBAction func logoutButtonPressed(_ sender: Any) {
         UserDataService.instance.logoutUser()
-        NotificationCenter.default.post(name: notificationUserDataDidChange, object: nil)
+        NotificationCenter.default.post(name: .userDataDidChange, object: nil)
         dismiss(animated: true, completion: nil)
     }
 }
