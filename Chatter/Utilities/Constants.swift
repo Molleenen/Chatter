@@ -38,11 +38,6 @@ enum Placeholders: String {
     case userPasswordRequired = "password is required"
 }
 
-// Notification Constants
-let notificationUserDataDidChange = Notification.Name("notificationUserDataChanged")
-let notificationChannelsLoaded = Notification.Name("channelsLoaded")
-let notificationChannelSelected = Notification.Name("channelSelected")
-
 // Segues names
 enum Segues: String {
     case toLogin
