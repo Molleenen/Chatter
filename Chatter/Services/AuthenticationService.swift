@@ -9,6 +9,11 @@ import SwiftyJSON
 
 class AuthenticationService {
 
+    private enum ResponseType {
+        case authenticatonData
+        case userData
+    }
+
     private enum Keys: String {
         case userId = "_id"
         case user = "user"
@@ -62,7 +67,6 @@ class AuthenticationService {
         password: String,
         completion: @escaping CompletionHandler
     ) {
-
         let lowerCaseEmail = email.lowercased()
 
         let body: [String: Any] = [
@@ -78,10 +82,9 @@ class AuthenticationService {
                 encoding: JSONEncoding.default,
                 headers: header)
             .responseString { response in
-                guard response.result.error == nil else {
-                    debugPrint(response.result.error as Any)
+                if let error = response.result.error {
+                    debugPrint("\(error.localizedDescription)")
                     completion(false)
-                    return
                 }
                 completion(true)
             }
@@ -92,7 +95,6 @@ class AuthenticationService {
         password: String,
         completion: @escaping CompletionHandler
     ) {
-
         let lowerCaseEmail = email.lowercased()
 
         let body: [String: Any] = [
@@ -108,34 +110,12 @@ class AuthenticationService {
                 encoding: JSONEncoding.default,
                 headers: header)
             .responseJSON { [weak self] response in
-                guard response.result.error == nil else {
-                    debugPrint(response.result.error as Any)
-                    completion(false)
-                    return
-                }
-                guard let data = response.data else {
-                    completion(false)
-                    return
-                }
-                do {
-                    let json = try JSON(data: data)
-                    guard
-                        let email = json[Keys.user.rawValue].string,
-                        let token = json[Keys.authenticationToken.rawValue].string
-                    else {
-                        completion(false)
-                        return
-                    }
-                    self?.userEmail = email
-                    self?.authenticationToken = token
-                } catch {
-                    print("Error getting JSON from web response after logging user")
-                    completion(false)
-                    return
-                }
 
-                self?.isLoggedIn = true
-                completion(true)
+                guard let result = self?.process(response: response, ofType: .authenticatonData) else {
+                    completion(false)
+                    return
+                }
+                completion(result)
             }
     }
 
@@ -146,7 +126,6 @@ class AuthenticationService {
         avatarColor: String,
         completion: @escaping CompletionHandler
     ) {
-
         let lowerCaseEmail = email.lowercased()
 
         let body: [String: Any] = [
@@ -165,22 +144,15 @@ class AuthenticationService {
                 headers: bearerHeader)
             .responseJSON { [weak self] response in
 
-                guard response.result.error == nil else {
-                    debugPrint(response.result.error as Any)
+                guard let result = self?.process(response: response, ofType: .userData) else {
                     completion(false)
                     return
                 }
-                guard let data = response.data else {
-                    completion(false)
-                    return
-                }
-                self?.setUserInfo(data: data)
-                completion(true)
+                completion(result)
         }
     }
 
     func findUserByEmail(completion: @escaping CompletionHandler) {
-
         Alamofire
             .request(
                 "\(urlUserByEmail)\(userEmail)",
@@ -189,45 +161,68 @@ class AuthenticationService {
                 headers: bearerHeader)
             .responseJSON { [weak self] response in
 
-                guard response.result.error == nil else {
-                    debugPrint(response.result.error as Any)
+                guard let result = self?.process(response: response, ofType: .userData) else {
                     completion(false)
                     return
                 }
-                guard let data = response.data else {
-                    completion(false)
-                    return
-                }
-                self?.setUserInfo(data: data)
-                completion(true)
+                completion(result)
         }
     }
 
-    func setUserInfo(data: Data) {
+    func setAuthenticationDataFrom(json: JSON) -> Bool {
+        guard
+            let email = json[Keys.user.rawValue].string,
+            let token = json[Keys.authenticationToken.rawValue].string
+        else { return false }
+
+        userEmail = email
+        authenticationToken = token
+        return true
+    }
+
+    func setUserDataFrom(json: JSON) -> Bool {
+        guard
+            let userId = json[Keys.userId.rawValue].string,
+            let avatarColor = json[Keys.userAvatarColor.rawValue].string,
+            let avatarName = json[Keys.userAvatarName.rawValue].string,
+            let email = json[Keys.userEmail.rawValue].string,
+            let name = json[Keys.userName.rawValue].string
+        else { return false }
+
+        UserDataService
+            .instance
+            .setUserData(
+                userId: userId,
+                avatarColor: avatarColor,
+                avatarName: avatarName,
+                email: email,
+                name: name)
+        return true
+    }
+
+    private func process(
+        response: DataResponse<Any>,
+        ofType responseType: ResponseType
+    ) -> Bool {
+        if let error = response.result.error {
+            debugPrint("\(error.localizedDescription)")
+            return false
+        }
+
+        guard let data = response.data else { return false }
+
         do {
             let json = try JSON(data: data)
-            guard
-                let userId = json[Keys.userId.rawValue].string,
-                let avatarColor = json[Keys.userAvatarColor.rawValue].string,
-                let avatarName = json[Keys.userAvatarName.rawValue].string,
-                let email = json[Keys.userEmail.rawValue].string,
-                let name = json[Keys.userName.rawValue].string
-            else {
-                 return
-            }
 
-            UserDataService
-                .instance
-                .setUserData(
-                    userId: userId,
-                    avatarColor:
-                    avatarColor,
-                    avatarName:
-                    avatarName,
-                    email: email,
-                    name: name)
+            switch responseType {
+            case .authenticatonData:
+                return setAuthenticationDataFrom(json: json)
+            case .userData:
+                return setUserDataFrom(json: json)
+            }
         } catch {
             print("Error getting JSON from web response after logging user")
+            return false
         }
     }
 }
