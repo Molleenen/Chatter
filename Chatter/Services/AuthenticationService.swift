@@ -82,12 +82,9 @@ class AuthenticationService {
                 encoding: JSONEncoding.default,
                 headers: header)
             .responseString { response in
-                guard response.result.error == nil else {
-                    if let error = response.result.error {
-                        debugPrint("\(error.localizedDescription)")
-                    }
+                if let error = response.result.error {
+                    debugPrint("\(error.localizedDescription)")
                     completion(false)
-                    return
                 }
                 completion(true)
             }
@@ -207,12 +204,11 @@ class AuthenticationService {
         response: DataResponse<Any>,
         ofType responseType: ResponseType
     ) -> Bool {
-        guard response.result.error == nil else {
-            if let error = response.result.error {
-                debugPrint("\(error.localizedDescription)")
-            }
+        if let error = response.result.error {
+            debugPrint("\(error.localizedDescription)")
             return false
         }
+
         guard let data = response.data else { return false }
 
         do {
