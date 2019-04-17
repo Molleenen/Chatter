@@ -180,20 +180,20 @@ class ChatViewController: UIViewController {
         if AuthenticationService.instance.isLoggedIn {
             AuthenticationService.instance.findUserByEmail { success in
                 guard success else { return }
-                NotificationCenter.default.post(name: notificationUserDataDidChange, object: nil)
+                NotificationCenter.default.post(name: .userDataDidChange, object: nil)
             }
         }
 
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(ChatViewController.userDataDidChange),
-            name: notificationUserDataDidChange,
+            name: .userDataDidChange,
             object: nil)
 
         NotificationCenter.default.addObserver(
             self, selector:
             #selector(ChatViewController.channelSelected),
-            name: notificationChannelSelected,
+            name: .channelSelected,
             object: nil)
 
         NotificationCenter.default.addObserver(

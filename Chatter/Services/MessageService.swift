@@ -39,10 +39,7 @@ class MessageService {
         channels.removeAll()
     }
 
-    func findAllMessagesForChannel(
-        channelId: String,
-        completion: @escaping CompletionHandler
-        ) {
+    func findAllMessagesForChannel(channelId: String, completion: @escaping CompletionHandler) {
         Alamofire
             .request(
                 "\(urlGetMessages)\(channelId)",
@@ -50,43 +47,17 @@ class MessageService {
                 parameters: nil,
                 encoding: JSONEncoding.default,
                 headers: bearerHeader)
-            .responseJSON { response in
+            .responseJSON { [weak self] response in
 
-                guard response.result.error == nil else {
-                    debugPrint(response.result.error as Any)
+                guard let result = self?.processMessagesResponse(response: response) else {
                     completion(false)
                     return
                 }
-
-                self.clearMessages()
-
-                guard let data = response.data else {
-                    completion(false)
-                    return
-                }
-                do {
-                    guard let json = try JSON(data: data).array else {
-                        completion(false)
-                        return
-                    }
-
-                    self.messagesFrom(json: json, completion: { (success) in
-                        guard success else {
-                            completion(false)
-                            return
-                        }
-                    })
-
-                    completion(true)
-                } catch {
-                    print("Error getting JSON from data")
-                    completion(false)
-                }
+                completion(result)
         }
     }
 
     func findAllChannels(completion: @escaping CompletionHandler) {
-
         Alamofire
             .request(
                 urlGetChannels,
@@ -96,80 +67,90 @@ class MessageService {
                 headers: bearerHeader)
             .responseJSON { [weak self] response in
 
-                guard response.result.error == nil else {
-                    debugPrint(response.result.error as Any)
+                guard let result = self?.processChannelsResponse(response: response) else {
                     completion(false)
                     return
                 }
-                guard let data = response.data else {
-                    completion(false)
-                    return
-                }
-                do {
-                    guard let json = try JSON(data: data).array else {
-                        completion(false)
-                        return
-                    }
-
-                    self?.channelsFrom(json: json, completion: { success in
-                        guard success else {
-                            completion(false)
-                            return
-                        }
-                    })
-
-                    NotificationCenter.default.post(name: notificationChannelsLoaded, object: nil)
-                    completion(true)
-                } catch {
-                    print("Error getting JSON from data")
-                    completion(false)
-                }
+                completion(result)
         }
     }
 
-    private func messagesFrom(json: [JSON], completion: @escaping CompletionHandler) {
-        json.forEach { item in
-            guard
-                let messageId = item[Keys.identifier.rawValue].string,
-                let messageBody = item[Keys.messageBody.rawValue].string,
-                let timeStamp = item[Keys.messageTimeStamp.rawValue].string,
-                let channelId = item[Keys.channelId.rawValue].string,
-                let userName = item[Keys.userName.rawValue].string,
-                let userAvatar = item[Keys.userAvatar.rawValue].string,
-                let userAvatarColor = item[Keys.userAvatarColor.rawValue].string
-                else {
-                    completion(false)
-                    return
-            }
-
-            let message = Message(
-                identifier: messageId,
-                messageBody: messageBody,
-                timeStamp: timeStamp,
-                channelId: channelId,
-                userName: userName,
-                userAvatar: userAvatar,
-                userAvatarColor: userAvatarColor)
-
-            self.messages.append(message)
+    private func processChannelsResponse(response: DataResponse<Any>) -> Bool {
+        if let error = response.result.error {
+            debugPrint("\(error.localizedDescription)")
+            return false
         }
-        completion(true)
+        guard let data = response.data else { return false }
+
+        do {
+            guard let jsonArray = try JSON(data: data).array else { return false }
+
+            channels = createChannelsFrom(jsonArray: jsonArray)
+            NotificationCenter.default.post(name: .channelsLoaded, object: nil)
+            return true
+        } catch {
+            print("Error getting channels JSON from data")
+            return false
+        }
     }
 
-    private func channelsFrom(json: [JSON], completion: @escaping CompletionHandler) {
-        json.forEach { item in
-            guard
-                let channelId = item[Keys.identifier.rawValue].string,
-                let name = item[Keys.channelName.rawValue].string,
-                let description = item[Keys.channelDescription.rawValue].string
-                else {
-                    completion(false)
-                    return
-            }
-
-            let channel = Channel(identifier: channelId, name: name, description: description)
-            self.channels.append(channel)
+    private func processMessagesResponse(response: DataResponse<Any>) -> Bool {
+        if let error = response.result.error {
+            debugPrint("\(error.localizedDescription)")
+            return false
         }
-        completion(false)
+        guard let data = response.data else { return false }
+
+        do {
+            guard let jsonArray = try JSON(data: data).array else { return false }
+
+            messages = createMessagesFrom(jsonArray: jsonArray)
+            return true
+        } catch {
+            print("Error getting JSON from data")
+            return false
+        }
+    }
+
+    internal func createChannelsFrom(jsonArray: [JSON]) -> [Channel] {
+        return jsonArray.compactMap { createChannelFrom(jsonItem: $0) }
+    }
+
+    internal func createChannelFrom(jsonItem: JSON) -> Channel? {
+        guard
+            let channelId = jsonItem[Keys.identifier.rawValue].string,
+            let name = jsonItem[Keys.channelName.rawValue].string,
+            let description = jsonItem[Keys.channelDescription.rawValue].string
+        else { return nil }
+
+        let channel = Channel(identifier: channelId, name: name, description: description)
+        return channel
+    }
+
+    internal func createMessagesFrom(jsonArray: [JSON]) -> [Message] {
+        return jsonArray.compactMap { createMessageFrom(jsonItem: $0) }
+    }
+
+    internal func createMessageFrom(jsonItem: JSON) -> Message? {
+        guard
+            let messageId = jsonItem[Keys.identifier.rawValue].string,
+            let messageBody = jsonItem[Keys.messageBody.rawValue].string,
+            let timeStamp = jsonItem[Keys.messageTimeStamp.rawValue].string,
+            let channelId = jsonItem[Keys.channelId.rawValue].string,
+            let userName = jsonItem[Keys.userName.rawValue].string,
+            let userAvatar = jsonItem[Keys.userAvatar.rawValue].string,
+            let userAvatarColor = jsonItem[Keys.userAvatarColor.rawValue].string
+        else { return nil }
+
+        let message = Message(
+            identifier: messageId,
+            messageBody: messageBody,
+            timeStamp: timeStamp,
+            channelId: channelId,
+            userName: userName,
+            userAvatar: userAvatar,
+            userAvatarColor: userAvatarColor)
+
+        return message
     }
 }
