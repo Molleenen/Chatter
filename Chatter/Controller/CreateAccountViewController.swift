@@ -95,7 +95,10 @@ class CreateAccountViewController: UIViewController {
     }
 
     @IBAction func chooseAvatarButtonPressed(_ sender: Any) {
-        performSegue(withIdentifier: Segues.toAvatarPicker.rawValue, sender: nil)
+        let viewModel = AvatarPickerViewModel()
+        let rootView = AvatarPickerRootView()
+        let viewController = AvatarPickerViewController(viewModel: viewModel, rootView: rootView)
+        present(viewController, animated: true, completion: nil)
     }
 
     @IBAction func generateBackgroundColorButtonPressed(_ sender: Any) {
