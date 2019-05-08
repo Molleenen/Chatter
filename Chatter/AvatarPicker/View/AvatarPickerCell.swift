@@ -7,16 +7,14 @@ import UIKit
 
 class AvatarPickerCell: UICollectionViewCell {
 
-    private var avatarImageView: UIImageView = {
-        let imageView = UIImageView()
-        return imageView
-    }()
+    private var avatarImageView = UIImageView()
 
-    override init(frame: CGRect = .zero) {
-        super.init(frame: frame)
+    override init(frame: CGRect) {
+        super.init(frame: .zero)
         setupView()
     }
 
+    @available(*, unavailable, message: "Use init(frame:) instead")
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -40,20 +38,20 @@ class AvatarPickerCell: UICollectionViewCell {
         NSLayoutConstraint.activate([top, bottom, leading, trailing])
     }
 
-    func configureCell(index: Int, type: AvatarType) {
-        if type == AvatarType.dark {
+    func configureCell(index: Int, avatarType: AvatarType) {
+        if avatarType == .dark {
             avatarImageView.image = UIImage(named: "dark\(index)")
-            layer.backgroundColor = UIColor.lightGray.cgColor
+            backgroundColor = .lightGray
         } else {
             avatarImageView.image = UIImage(named: "light\(index)")
-            layer.backgroundColor = UIColor.gray.cgColor
+            backgroundColor = .gray
         }
     }
 
     private func setupView() {
         contentMode = .center
         clipsToBounds = true
-        layer.backgroundColor = UIColor.lightGray.cgColor
+        backgroundColor = .lightGray
         layer.cornerRadius = 10
     }
 }

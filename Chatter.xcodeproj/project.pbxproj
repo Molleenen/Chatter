@@ -271,13 +271,37 @@
 		EA4C3A23226904F2002FA55A /* AvatarPicker */ = {
 			isa = PBXGroup;
 			children = (
-				EABA634E221AD34900111D66 /* AvatarPickerViewController.swift */,
-				EA4C3A242269050B002FA55A /* AvatarPickerViewModel.swift */,
-				EA4C3A212269044A002FA55A /* AvatarPickerRootView.swift */,
-				EA4C3A2622692660002FA55A /* AvatarPickerCell.swift */,
-				EA4C3A2A2269B2CD002FA55A /* AvatarType.swift */,
+				EA4C3A322282DB7A002FA55A /* Model */,
+				EA4C3A312282DB6F002FA55A /* View */,
+				EA4C3A332282DB91002FA55A /* ViewModel */,
 			);
 			path = AvatarPicker;
+			sourceTree = "<group>";
+		};
+		EA4C3A312282DB6F002FA55A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EABA634E221AD34900111D66 /* AvatarPickerViewController.swift */,
+				EA4C3A212269044A002FA55A /* AvatarPickerRootView.swift */,
+				EA4C3A2622692660002FA55A /* AvatarPickerCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EA4C3A322282DB7A002FA55A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EA4C3A2A2269B2CD002FA55A /* AvatarType.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EA4C3A332282DB91002FA55A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EA4C3A242269050B002FA55A /* AvatarPickerViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		EABA6358221AFEAC00111D66 /* XIBs */ = {

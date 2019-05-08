@@ -7,15 +7,15 @@ import Foundation
 
 public class AvatarPickerViewModel {
 
-    typealias AvatarPickerUpdateHandler = () -> Void
-    typealias AvatarPickerDismissHandler = () -> Void
+    typealias AvatarPickerUpdateViewHandler = () -> Void
+    typealias AvatarPickerDismissViewHandler = () -> Void
 
-    var updateHandler: AvatarPickerUpdateHandler?
-    var dismissHandler: AvatarPickerDismissHandler?
+    var updateViewHandler: AvatarPickerUpdateViewHandler?
+    var dismissViewHandler: AvatarPickerDismissViewHandler?
 
     var avatarType: AvatarType {
         didSet {
-           updateHandler?()
+           updateViewHandler?()
         }
     }
 
@@ -29,6 +29,6 @@ public class AvatarPickerViewModel {
 
     func userSelectedAvatar(avatarName: String) {
         UserDataService.instance.setAvatarName(avatarName: avatarName)
-        dismissHandler?()
+        dismissViewHandler?()
     }
 }

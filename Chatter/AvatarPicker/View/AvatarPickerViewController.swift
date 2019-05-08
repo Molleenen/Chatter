@@ -3,13 +3,10 @@
 //  Chatter
 //
 
-// 3. UISegmentControll valueChanged handler?
-// 4. Collection view reloadData() in UISegmentControll valueChanged handler or not?
-
 import UIKit
 
 class AvatarPickerViewController: UIViewController {
-    
+
     private let viewModel: AvatarPickerViewModel
     private let rootView: AvatarPickerRootView
 
@@ -19,12 +16,12 @@ class AvatarPickerViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         self.rootView.delegate = self
         self.rootView.dataSource = self
-        self.viewModel.dismissHandler = dismissView
-        self.rootView.dismissHandler = dismissView
+        self.viewModel.dismissViewHandler = dismissView
+        self.rootView.dismissViewHandler = dismissView
         self.rootView.avatarTypeChangeHandler = avatarTypeChanged(to:)
     }
 
-    @available(*, unavailable, message: "Use init(viewModel:) instead")
+    @available(*, unavailable, message: "Use init(viewModel: rootView:) instead")
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -57,10 +54,10 @@ extension AvatarPickerViewController: UICollectionViewDelegate, UICollectionView
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: "avatarCell",
+            withReuseIdentifier: String(describing: AvatarPickerCell.self),
             for: indexPath) as? AvatarPickerCell
-            else { return AvatarPickerCell() }
-        cell.configureCell(index: indexPath.item, type: viewModel.avatarType)
+        else { return AvatarPickerCell() }
+        cell.configureCell(index: indexPath.item, avatarType: viewModel.avatarType)
         return cell
     }
 
@@ -68,9 +65,10 @@ extension AvatarPickerViewController: UICollectionViewDelegate, UICollectionView
         _ collectionView: UICollectionView,
         didSelectItemAt indexPath: IndexPath
     ) {
-        if viewModel.avatarType == .dark {
+        switch viewModel.avatarType {
+        case .dark:
             viewModel.userSelectedAvatar(avatarName: "dark\(indexPath.item)")
-        } else {
+        case .light:
             viewModel.userSelectedAvatar(avatarName: "light\(indexPath.item)")
         }
     }
@@ -83,9 +81,9 @@ extension AvatarPickerViewController: UICollectionViewDelegateFlowLayout {
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
 
-        var numbersOfColumns: CGFloat = 3
-        if UIScreen.main.bounds.width > 320 {
-            numbersOfColumns = 4
+        var numbersOfColumns: CGFloat = 4
+        if Int(UIScreen.main.bounds.width) < 375 {
+            numbersOfColumns = 3
         }
 
         let spaceBetweenCells: CGFloat = 10
