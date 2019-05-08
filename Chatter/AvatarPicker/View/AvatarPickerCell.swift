@@ -31,18 +31,19 @@ class AvatarPickerCell: UICollectionViewCell {
 
     private func activateConstraints() {
         avatarImageView.translatesAutoresizingMaskIntoConstraints = false
-        let top = avatarImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10)
-        let bottom = avatarImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
-        let leading = avatarImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10)
-        let trailing = avatarImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
+        let top = avatarImageView.topAnchor.constraint(equalTo: contentView.topAnchor)
+        let bottom = avatarImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        let leading = avatarImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor)
+        let trailing = avatarImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         NSLayoutConstraint.activate([top, bottom, leading, trailing])
     }
 
     func configureCell(index: Int, avatarType: AvatarType) {
-        if avatarType == .dark {
+        switch avatarType {
+        case .dark:
             avatarImageView.image = UIImage(named: "dark\(index)")
             backgroundColor = .lightGray
-        } else {
+        case .light:
             avatarImageView.image = UIImage(named: "light\(index)")
             backgroundColor = .gray
         }
