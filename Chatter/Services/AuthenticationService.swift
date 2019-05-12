@@ -115,6 +115,7 @@ class AuthenticationService {
                     completion(false)
                     return
                 }
+                self?.isLoggedIn = true
                 completion(result)
             }
     }
