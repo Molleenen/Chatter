@@ -16,9 +16,15 @@ class AvatarPickerViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         self.rootView.delegate = self
         self.rootView.dataSource = self
-        self.viewModel.dismissViewHandler = dismissView
-        self.rootView.dismissViewHandler = dismissView
-        self.rootView.avatarTypeChangeHandler = avatarTypeChanged(to:)
+        self.viewModel.dismissViewHandler = { [weak self] in
+            self?.dismissView()
+        }
+        self.rootView.dismissViewHandler = { [weak self] in
+            self?.dismissView()
+        }
+        self.rootView.avatarTypeChangeHandler = { [weak self] avatarType in
+            self?.avatarTypeChanged(to: avatarType)
+        }
     }
 
     @available(*, unavailable, message: "Use init(viewModel: rootView:) instead")
